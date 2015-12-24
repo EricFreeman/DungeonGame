@@ -2,6 +2,6 @@
 {
     public static class MouseConfiguration
     {
-        public static float MouseSensetivity = 200;
+        public static float MouseSensetivity = 250;
     }
 }

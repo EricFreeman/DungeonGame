@@ -6,7 +6,7 @@ namespace Assets.Resources.Scripts.Player
     {
         public float MoveSpeed = 3.5f;
 
-        void Update()
+        void FixedUpdate()
         {
             var horizontalMovement = Input.GetAxisRaw("Horizontal");
             var verticalMovement = Input.GetAxisRaw("Vertical");
