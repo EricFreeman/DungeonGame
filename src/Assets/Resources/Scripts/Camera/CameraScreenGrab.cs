@@ -1,37 +1,40 @@
 ﻿using UnityEngine;
 
-//Attach this to a camera
 namespace Assets.Resources.Scripts.Camera
 {
     public class CameraScreenGrab : MonoBehaviour
     {
+        public int PixelSize = 4;
+        public FilterMode FilterMode = FilterMode.Point;
+        public UnityEngine.Camera[] OtherCameras;
 
-        //how chunky to make the screen
-        public int pixelSize = 4;
-        public FilterMode filterMode = FilterMode.Point;
-        public UnityEngine.Camera[] otherCameras;
-        private Material mat;
-        Texture2D tex;
+        private Material _mat;
+        Texture2D _tex;
 
         void Start()
         {
-            GetComponent<UnityEngine.Camera>().pixelRect = new Rect(0, 0, Screen.width / pixelSize, Screen.height / pixelSize);
-            for (int i = 0; i < otherCameras.Length; i++)
-                otherCameras[i].pixelRect = new Rect(0, 0, Screen.width / pixelSize, Screen.height / pixelSize);
+            var width = Screen.width / PixelSize;
+            var height = Screen.height / PixelSize;
+            GetComponent<UnityEngine.Camera>().pixelRect = new Rect(0, 0, width, height);
+
+            foreach (UnityEngine.Camera otherCamera in OtherCameras)
+            {
+                otherCamera.pixelRect = new Rect(0, 0, width, height);
+            }
         }
 
         void OnGUI()
         {
             if (Event.current.type == EventType.Repaint)
-                Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), tex);
+                Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), _tex);
         }
 
 
         void OnPostRender()
         {
-            if (!mat)
+            if (!_mat)
             {
-                mat = new Material("Shader \"Hidden/SetAlpha\" {" +
+                _mat = new Material("Shader \"Hidden/SetAlpha\" {" +
                                    "SubShader {" +
                                    "	Pass {" +
                                    "		ZTest Always Cull Off ZWrite Off" +
@@ -45,9 +48,9 @@ namespace Assets.Resources.Scripts.Camera
             // Draw a quad over the whole screen with the above shader
             GL.PushMatrix();
             GL.LoadOrtho();
-            for (var i = 0; i < mat.passCount; ++i)
+            for (var i = 0; i < _mat.passCount; ++i)
             {
-                mat.SetPass(i);
+                _mat.SetPass(i);
                 GL.Begin(GL.QUADS);
                 GL.Vertex3(0, 0, 0.1f);
                 GL.Vertex3(1, 0, 0.1f);
@@ -58,13 +61,12 @@ namespace Assets.Resources.Scripts.Camera
             GL.PopMatrix();
 
 
-            DestroyImmediate(tex);
+            DestroyImmediate(_tex);
 
-            tex = new Texture2D(Mathf.FloorToInt(GetComponent<UnityEngine.Camera>().pixelWidth), Mathf.FloorToInt(GetComponent<UnityEngine.Camera>().pixelHeight));
-            tex.filterMode = filterMode;
-            tex.ReadPixels(new Rect(0, 0, GetComponent<UnityEngine.Camera>().pixelWidth, GetComponent<UnityEngine.Camera>().pixelHeight), 0, 0);
-            tex.Apply();
+            _tex = new Texture2D(Mathf.FloorToInt(GetComponent<UnityEngine.Camera>().pixelWidth), Mathf.FloorToInt(GetComponent<UnityEngine.Camera>().pixelHeight));
+            _tex.filterMode = FilterMode;
+            _tex.ReadPixels(new Rect(0, 0, GetComponent<UnityEngine.Camera>().pixelWidth, GetComponent<UnityEngine.Camera>().pixelHeight), 0, 0);
+            _tex.Apply();
         }
-
     }
 }
