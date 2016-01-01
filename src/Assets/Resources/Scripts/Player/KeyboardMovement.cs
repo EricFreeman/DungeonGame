@@ -14,6 +14,11 @@ namespace Assets.Resources.Scripts.Player
             var movement = new Vector3(horizontalMovement, 0, verticalMovement) * MoveSpeed * Time.deltaTime;
 
             transform.Translate(movement);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GetComponent<Rigidbody>().AddForce(0, 100, 0);
+            }
         }
     }
 }
