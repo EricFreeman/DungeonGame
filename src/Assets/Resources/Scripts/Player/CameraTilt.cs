@@ -9,7 +9,6 @@ namespace Assets.Resources.Scripts.Player
         public float TiltSpeed = 1f;
 
         private float _currentTilt;
-
         
         void Update()
         {
