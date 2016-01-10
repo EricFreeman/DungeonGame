@@ -4,25 +4,20 @@ namespace Assets.Resources.Scripts.Gore
 {
     public class BloodEjector : MonoBehaviour
     {
-        public GameObject BloodDecal;
+        public GameObject BloodDroplet;
+
+        public float MinForce;
         public float MaxForce;
-
-        private GameObject _player;
-
-        void Start()
-        {
-            _player = GameObject.Find("Player");
-        }
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 for (var i = 0; i < 3; i++)
                 {
-                    var blood = Instantiate(BloodDecal);
-                    blood.transform.position = transform.position;
-                    blood.transform.Translate(Random.Range(-MaxForce, MaxForce), Random.Range(-MaxForce, MaxForce), Random.Range(-MaxForce, MaxForce));
+                    var blood = Instantiate(BloodDroplet);
+                    blood.transform.position = transform.position + new Vector3(0, .2f, 0);
+                    blood.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
                 }
             }
         }
