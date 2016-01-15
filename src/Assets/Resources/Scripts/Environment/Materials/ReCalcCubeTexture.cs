@@ -1,26 +1,27 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Resources.Scripts.Environment.Materials
 {
+    [ExecuteInEditMode]
     public class ReCalcCubeTexture : MonoBehaviour
-    {        Vector3 _currentScale;
+    {
+        private Vector3 _currentScale;
 
-        void Start()
+        private void Start()
         {
-            _currentScale = transform.localScale;
+            Calculate();
         }
 
-        void Update()
+        private void Update()
         {
-            if (_currentScale == transform.localScale) return;
-            if (CheckForDefaultSize()) return;
-
             Calculate();
         }
 
         public void Calculate()
         {
+            if (_currentScale == transform.localScale) return;
+            if (CheckForDefaultSize()) return;
+
             _currentScale = transform.localScale;
             var mesh = GetMesh();
             mesh.uv = SetupUvMap(mesh.uv);
@@ -111,21 +112,4 @@ namespace Assets.Resources.Scripts.Environment.Materials
             return true;
         }
     }
-
-    #if UNITY_EDITOR
-    [CustomEditor(typeof(ReCalcCubeTexture))]
-    public class UpdateTextures : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            var myScript = (ReCalcCubeTexture)target;
-            if (GUILayout.Button("Update Texture"))
-            {
-                myScript.Calculate();
-            }
-        }
-    }
-    #endif
 }
