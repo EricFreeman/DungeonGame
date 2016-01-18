@@ -7,6 +7,7 @@ namespace Assets.Resources.Scripts.Player
     {
         public float MoveSpeed = 3.5f;
         public float Acceleration = 1f;
+        public float JumpForce = 200f;
 
         private float _currentMoveSpeed;
         private Vector3 _lastDirection;
@@ -33,7 +34,7 @@ namespace Assets.Resources.Scripts.Player
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                GetComponent<Rigidbody>().AddForce(0, 100, 0);
+                GetComponent<Rigidbody>().AddForce(0, JumpForce, 0);
             }
         }
     }
