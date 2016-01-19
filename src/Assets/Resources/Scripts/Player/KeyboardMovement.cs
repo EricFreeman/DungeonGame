@@ -1,4 +1,5 @@
-﻿using Assets.Resources.Scripts.Utils;
+﻿using System.Security.Permissions;
+using Assets.Resources.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts.Player
@@ -31,11 +32,19 @@ namespace Assets.Resources.Scripts.Player
             var movement = (speed > 0 ? moveVector : _lastDirection) * _currentMoveSpeed * Time.deltaTime;
 
             transform.Translate(movement);
+        }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             {
                 GetComponent<Rigidbody>().AddForce(0, JumpForce, 0);
             }
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics.Raycast(transform.position - new Vector3(0, .45f, 0), Vector3.down, .1f);
         }
     }
 }
