@@ -1,5 +1,4 @@
-﻿using System.Security.Permissions;
-using Assets.Resources.Scripts.Utils;
+﻿using Assets.Resources.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts.Player
@@ -9,9 +8,14 @@ namespace Assets.Resources.Scripts.Player
         public float MoveSpeed = 3.5f;
         public float Acceleration = 1f;
         public float JumpForce = 200f;
+        public float MaxGroundedJumpTime = .25f;
 
         private float _currentMoveSpeed;
         private Vector3 _lastDirection;
+
+        private bool _isJumping;
+        private bool _wasGrounded;
+        private float _lastGroundedTime;
 
         void FixedUpdate()
         {
@@ -36,8 +40,20 @@ namespace Assets.Resources.Scripts.Player
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            if (IsGrounded())
             {
+                _wasGrounded = true;
+                _lastGroundedTime = Time.time;
+            }
+            else if (Time.time - _lastGroundedTime > MaxGroundedJumpTime)
+            {
+                _wasGrounded = false;
+                _isJumping = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) && _wasGrounded && !_isJumping)
+            {
+                _isJumping = true;
                 GetComponent<Rigidbody>().AddForce(0, JumpForce, 0);
             }
         }
