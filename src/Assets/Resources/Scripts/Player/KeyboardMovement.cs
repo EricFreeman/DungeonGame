@@ -1,4 +1,5 @@
-﻿using Assets.Resources.Scripts.Utils;
+﻿using System.Linq;
+using Assets.Resources.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts.Player
@@ -42,6 +43,7 @@ namespace Assets.Resources.Scripts.Player
         {
             if (IsGrounded())
             {
+                _isJumping = false;
                 _wasGrounded = true;
                 _lastGroundedTime = Time.time;
             }
@@ -54,13 +56,56 @@ namespace Assets.Resources.Scripts.Player
             if (Input.GetKeyDown(KeyCode.Space) && _wasGrounded && !_isJumping)
             {
                 _isJumping = true;
-                GetComponent<Rigidbody>().AddForce(0, JumpForce, 0);
+                var rigidbody = GetComponent<Rigidbody>();
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+                rigidbody.AddForce(0, JumpForce, 0);
             }
         }
 
         private bool IsGrounded()
         {
-            return Physics.Raycast(transform.position - new Vector3(0, .45f, 0), Vector3.down, .1f);
+            var size = .3f;
+            var halfHeight = .45f;
+            var castDistance = .15f;
+
+            var rays = new[]
+            {
+                new Vector3(0, halfHeight, 0),
+
+                new Vector3(size, halfHeight, size),
+                new Vector3(-size, halfHeight, -size),
+                new Vector3(-size, halfHeight, size),
+                new Vector3(size, halfHeight, -size),
+                new Vector3(0, halfHeight, size),
+                new Vector3(0, halfHeight, -size),
+                new Vector3(-size, halfHeight, 0),
+                new Vector3(size, halfHeight, 0),
+
+                new Vector3(size/2, halfHeight, size/2),
+                new Vector3(-size/2, halfHeight, -size/2),
+                new Vector3(-size/2, halfHeight, size/2),
+                new Vector3(size/2, halfHeight, -size/2),
+                new Vector3(0, halfHeight, size/2),
+                new Vector3(0, halfHeight, -size/2),
+                new Vector3(-size/2, halfHeight, 0),
+                new Vector3(size/2, halfHeight, 0),
+
+                new Vector3(size/3, halfHeight, size/3),
+                new Vector3(-size/3, halfHeight, -size/3),
+                new Vector3(-size/3, halfHeight, size/3),
+                new Vector3(size/3, halfHeight, -size/3),
+                new Vector3(0, halfHeight, size/3),
+                new Vector3(0, halfHeight, -size/3),
+                new Vector3(-size/3, halfHeight, 0),
+                new Vector3(size/3, halfHeight, 0),
+            };
+
+            foreach (var ray in rays)
+            {
+                Debug.DrawLine(transform.position - ray, transform.position - ray - (Vector3.down * castDistance));
+            }
+
+            return rays.Any(ray => Physics.Raycast(transform.position - ray, Vector3.down, castDistance));
         }
     }
 }
