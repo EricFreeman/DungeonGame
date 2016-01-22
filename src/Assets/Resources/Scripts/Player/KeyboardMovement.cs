@@ -10,6 +10,7 @@ namespace Assets.Resources.Scripts.Player
         public float Acceleration = 1f;
         public float JumpForce = 200f;
         public float MaxGroundedJumpTime = .25f;
+        private float MaxJumpDelay = .25f;
 
         private float _currentMoveSpeed;
         private Vector3 _lastDirection;
@@ -17,6 +18,8 @@ namespace Assets.Resources.Scripts.Player
         private bool _isJumping;
         private bool _wasGrounded;
         private float _lastGroundedTime;
+
+        private float _lastJumpTime;
 
         void FixedUpdate()
         {
@@ -53,9 +56,13 @@ namespace Assets.Resources.Scripts.Player
                 _isJumping = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && _wasGrounded && !_isJumping)
+            var canJump = Time.time - _lastJumpTime > MaxJumpDelay;
+
+            if (Input.GetKeyDown(KeyCode.Space) && _wasGrounded && !_isJumping && canJump)
             {
                 _isJumping = true;
+                _lastJumpTime = Time.time;
+
                 var rigidbody = GetComponent<Rigidbody>();
                 rigidbody.velocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
                 rigidbody.AddForce(0, JumpForce, 0);
