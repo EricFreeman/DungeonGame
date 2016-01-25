@@ -11,15 +11,15 @@ namespace Assets.Resources.Scripts.Gore
 
         void Update()
         {
-            if (Input.GetMouseButton(0))
-            {
-                for (var i = 0; i < 3; i++)
-                {
-                    var blood = Instantiate(BloodDroplet);
-                    blood.transform.position = transform.position + new Vector3(0, .2f, 0);
-                    blood.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
-                }
-            }
+//            if (Input.GetMouseButton(0))
+//            {
+//                for (var i = 0; i < 3; i++)
+//                {
+//                    var blood = Instantiate(BloodDroplet);
+//                    blood.transform.position = transform.position + new Vector3(0, .2f, 0);
+//                    blood.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * Random.Range(MinForce, MaxForce));
+//                }
+//            }
         }
     }
 }
