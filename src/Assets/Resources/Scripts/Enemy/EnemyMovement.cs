@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Resources.Scripts.Weapons;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts.Enemy
@@ -110,38 +111,39 @@ namespace Assets.Resources.Scripts.Enemy
 
         void OnTriggerEnter(Collider col)
         {
-//            var bullet = col.GetComponent<Bullet>();
-//
-//            if (bullet != null)
-//            {
-//                if (State != EnemyState.Detect)
-//                {
-//                    State = EnemyState.Searching;
-//
-//                    var player = GameObject.Find("PlayerMesh");
-//
-//                    var bounds = player.GetComponent<Renderer>().bounds;
-//                    var points = new Vector3[]
-//                    {
-//                        bounds.center,
-//                        bounds.center - new Vector3(bounds.extents.x, 0, bounds.extents.z)/2,
-//                        bounds.center + new Vector3(bounds.extents.x, 0, bounds.extents.z)/2
-//                    };
-//
-//                    foreach (var point in points)
-//                    {
-//                        RaycastHit hit;
-//                        if (Physics.Raycast(transform.position, point - transform.position + new Vector3(0, .2f, 0), out hit))
-//                        {
-//                            if (hit.transform.tag == "Player")
-//                            {
-//                                State = EnemyState.Detect;
-//                                _lastKnownLocation = player.transform.position;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
+            var bullet = col.GetComponent<Bullet>();
+
+            if (bullet != null)
+            {
+                if (State != EnemyState.Detect)
+                {
+                    State = EnemyState.Searching;
+
+                    var player = GameObject.Find("Player");
+                    var size = .15f;
+                    var points = new[]
+                    {
+                        player.transform.position,
+                        player.transform.position + new Vector3(size, 0, size),
+                        player.transform.position + new Vector3(-size, 0, -size),
+                        player.transform.position + new Vector3(-size, 0, size),
+                        player.transform.position + new Vector3(size, 0, -size)
+                    };
+
+                    foreach (var point in points)
+                    {
+                        RaycastHit hit;
+                        if (Physics.Raycast(transform.position, point - transform.position + new Vector3(0, .2f, 0), out hit))
+                        {
+                            if (hit.transform.tag == "Player")
+                            {
+                                State = EnemyState.Detect;
+                                _lastKnownLocation = player.transform.position;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

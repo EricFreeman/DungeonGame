@@ -26,7 +26,6 @@ namespace Assets.Resources.Scripts.Weapons
                 {
                     bullet.transform.position = transform.position;
                     bullet.transform.rotation = transform.rotation;
-                    Debug.Log(transform.rotation);
                 }
 
                 bullet.GetComponent<Bullet>().Damage = Random.Range(1, 5);
