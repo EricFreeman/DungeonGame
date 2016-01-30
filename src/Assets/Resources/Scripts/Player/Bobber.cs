@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Assets.Resources.Scripts.Player
 {
-    public class Headbobber : MonoBehaviour
+    public class Bobber : MonoBehaviour
     {
-
         public float BobbingSpeed = 0.18f;
         public float BobbingAmount = 0.1f;
         public float HeadHeight = 0.0f;

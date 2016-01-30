@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Resources.Scripts.Player
 {
-    public class CameraTilt : MonoBehaviour
+    public class Tilter : MonoBehaviour
     {
         public float MaxTilt = 2;
         public float TiltSpeed = 1f;
