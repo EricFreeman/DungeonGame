@@ -41,6 +41,9 @@ namespace Assets.Resources.Scripts.Environment.Materials
 
             var meshFilter = GetComponent<MeshFilter>();
             var meshCopy = Instantiate(meshFilter.sharedMesh);
+
+            return meshCopy;
+
             mesh = meshFilter.mesh = meshCopy;
 
             #else
@@ -54,6 +57,8 @@ namespace Assets.Resources.Scripts.Environment.Materials
 
         private Vector2[] SetupUvMap(Vector2[] meshUVs)
         {
+            if (meshUVs.Length == 0) return meshUVs;
+
             var width = _currentScale.x;
             var depth = _currentScale.z;
             var height = _currentScale.y;

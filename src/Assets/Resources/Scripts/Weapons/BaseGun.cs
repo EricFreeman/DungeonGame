@@ -6,7 +6,7 @@ namespace Assets.Resources.Scripts.Weapons
     {
         public int Ammunition;
         public GameObject Bullet;
-        public GameObject Tip;
+        public Transform Tip;
 
         public float ShotDelay = .1f;
         private float _lastShot;
@@ -19,8 +19,21 @@ namespace Assets.Resources.Scripts.Weapons
 
                 if (Tip != null)
                 {
+                    var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                    RaycastHit hit;
+                    Vector3 dir;
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        dir = (hit.point - Tip.transform.position).normalized;
+                    }
+                    else
+                    {
+                        dir = ray.direction;
+                    }
+
                     bullet.transform.position = Tip.transform.position;
-                    bullet.transform.rotation = Tip.transform.rotation;
+                    bullet.transform.rotation = Quaternion.LookRotation(dir);
                 }
                 else
                 {
@@ -42,6 +55,29 @@ namespace Assets.Resources.Scripts.Weapons
             var itHasBeenLongEnoughSinceTheLastShot = Time.fixedTime - _lastShot > ShotDelay;
 
             return ammunitionIsNotEmpty && itHasBeenLongEnoughSinceTheLastShot;
+        }
+
+        public void FireAtPosition(object cameraLookPosition)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit;
+                Vector3 dir;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    dir = (hit.point - Tip.transform.position).normalized;
+                }
+                else
+                {
+                    dir = ray.direction;
+                }
+
+//                var rot = Quaternion.FromToRotation(bullet.forward, dir);
+//                var rocket = Instantiate(Bullet, Tip.position, rot);
+//                rocket.velocity = dir;
+            }
         }
     }
 }
