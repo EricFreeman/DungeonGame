@@ -56,28 +56,5 @@ namespace Assets.Resources.Scripts.Weapons
 
             return ammunitionIsNotEmpty && itHasBeenLongEnoughSinceTheLastShot;
         }
-
-        public void FireAtPosition(object cameraLookPosition)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-                RaycastHit hit;
-                Vector3 dir;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    dir = (hit.point - Tip.transform.position).normalized;
-                }
-                else
-                {
-                    dir = ray.direction;
-                }
-
-//                var rot = Quaternion.FromToRotation(bullet.forward, dir);
-//                var rocket = Instantiate(Bullet, Tip.position, rot);
-//                rocket.velocity = dir;
-            }
-        }
     }
 }
