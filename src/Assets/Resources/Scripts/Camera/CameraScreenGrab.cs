@@ -19,7 +19,15 @@ namespace Assets.Resources.Scripts.Camera
 
             foreach (UnityEngine.Camera otherCamera in OtherCameras)
             {
-                otherCamera.pixelRect = new Rect(0, 0, width, height);
+                if (otherCamera.name == "UiCamera")
+                {
+                    Debug.Log("FUCK");
+                    otherCamera.pixelRect = new Rect(0, 0, Screen.width, Screen.height);
+                }
+                else
+                {
+                    otherCamera.pixelRect = new Rect(0, 0, width, height);
+                }
             }
         }
 
@@ -27,6 +35,15 @@ namespace Assets.Resources.Scripts.Camera
         {
             if (Event.current.type == EventType.Repaint)
                 Graphics.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), _tex);
+
+            foreach (UnityEngine.Camera otherCamera in OtherCameras)
+            {
+                if (otherCamera.name == "UiCamera")
+                {
+                    otherCamera.Render();
+
+                }
+            }
         }
 
 
