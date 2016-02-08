@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
@@ -26,6 +27,11 @@ namespace Assets.Scripts.Utils
         {
             var index = UnityEngine.Random.Range(0, list.Count);
             return list[index];
+        }
+
+        public static Vector3 PositiveY(this Vector3 vector)
+        {
+            return new Vector3(vector.x, Math.Abs(vector.y), vector.z);
         }
     }
 }
