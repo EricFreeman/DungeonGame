@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Utils
 {
@@ -19,6 +20,12 @@ namespace Assets.Scripts.Utils
             {
                 return current + moveTowards;
             }
+        }
+
+        public static T Random<T>(this List<T> list)
+        {
+            var index = UnityEngine.Random.Range(0, list.Count);
+            return list[index];
         }
     }
 }
