@@ -2,7 +2,7 @@
 {
     public interface IDamageBehavior
     {
-        void OnHit();
+        void OnHit(HitContext hitContext);
         void OnDeath();
     }
 }

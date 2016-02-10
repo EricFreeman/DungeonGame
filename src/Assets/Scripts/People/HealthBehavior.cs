@@ -28,7 +28,7 @@ namespace Assets.Scripts.People
             if (bullet != null)
             {
                 Health -= bullet.Damage;
-                _damageBehavior.OnHit();
+                _damageBehavior.OnHit(new HitContext { Direction = bullet.transform.forward, Force = bullet.Speed});
             }
         }
     }

@@ -6,12 +6,12 @@ namespace Assets.Scripts.Enemy
 {
     public class EnemyHealthBehavior : MonoBehaviour, IDamageBehavior
     {
-        public void OnHit()
+        public void OnHit(HitContext hitContext)
         {
             var ejector = gameObject.GetComponent<BloodEjector>();
             if (ejector != null)
             {
-                ejector.Eject();
+                ejector.Eject(hitContext);
             }
         }
 
