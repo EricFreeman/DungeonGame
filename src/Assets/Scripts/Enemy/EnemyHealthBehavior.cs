@@ -24,6 +24,7 @@ namespace Assets.Scripts.Enemy
         {
             Destroy(GetComponent<EnemyMovement>());
             Destroy(GetComponent<NavMeshAgent>());
+            Destroy(GetComponent<BoxCollider>());
 
             _isDead = true;
             GetComponentInChildren<SpriteRenderer>().sprite = DeadBody;
