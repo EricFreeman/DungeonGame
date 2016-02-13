@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Utils;
 using Assets.Scripts.Weapons;
 using UnityEngine;
 
@@ -26,10 +27,18 @@ namespace Assets.Scripts.Enemy
             switch (State)
             {
                 case EnemyState.Idle:
-                    if (CanSeePlayer()) State = EnemyState.Detect;
+                    if (CanSeePlayer())
+                    {
+                        State = EnemyState.Detect;
+                        GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Walk);
+                    }
                     break;
                 case EnemyState.Patrolling:
-                    if (CanSeePlayer()) State = EnemyState.Detect;
+                    if (CanSeePlayer())
+                    {
+                        State = EnemyState.Detect;
+                        GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Walk);
+                    }
                     break;
                 case EnemyState.Searching:
                     SearchState();

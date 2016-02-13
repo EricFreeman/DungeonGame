@@ -15,6 +15,8 @@ namespace Assets.Scripts.Utils
         private int _currentFrame;
         private float _timeOnFrame;
 
+        private bool _isOneShot;
+
         void Update()
         {
             if (_currentAnimation == null) return;
@@ -27,6 +29,12 @@ namespace Assets.Scripts.Utils
 
                 if (_currentFrame >= _currentAnimation.Count)
                 {
+                    if (_isOneShot)
+                    {
+                        _currentFrame--;
+                        return;
+                    }
+
                     _currentFrame = 0;
                     if (_previousAnimation != null)
                     {
@@ -44,6 +52,7 @@ namespace Assets.Scripts.Utils
             if (isOneShot)
             {
                 _previousAnimation = _currentAnimation;
+                _isOneShot = true;
             }
 
             _currentAnimation = anim;
