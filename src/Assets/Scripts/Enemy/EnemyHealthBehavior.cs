@@ -27,10 +27,12 @@ namespace Assets.Scripts.Enemy
 
             Destroy(GetComponent<EnemyMovement>());
             Destroy(GetComponent<NavMeshAgent>());
-            Destroy(GetComponent<BoxCollider>());
 
             _isDead = true;
             GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Die, true);
+
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponent<Rigidbody>().AddExplosionForce(7.5f, transform.position + transform.forward, 1f, 1f, ForceMode.Impulse);
         }
     }
 }
