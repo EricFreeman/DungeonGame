@@ -21,7 +21,7 @@ namespace Assets.Scripts.Enemy
             }
         }
 
-        public void OnDeath()
+        public void OnDeath(HitContext hitContext)
         {
             if (_isDead) return;
 
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Enemy
             GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Die, true);
 
             GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().AddExplosionForce(7.5f, transform.position + transform.forward, 1f, 1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
         }
     }
 }

@@ -3,6 +3,6 @@
     public interface IDamageBehavior
     {
         void OnHit(HitContext hitContext);
-        void OnDeath();
+        void OnDeath(HitContext hitContext);
     }
 }

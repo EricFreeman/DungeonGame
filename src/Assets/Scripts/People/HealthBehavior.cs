@@ -15,10 +15,7 @@ namespace Assets.Scripts.People
 
         void Update()
         {
-            if (Health <= 0)
-            {
-                _damageBehavior.OnDeath();
-            }
+            
         }
 
         void OnTriggerEnter(Collider col)
@@ -28,7 +25,17 @@ namespace Assets.Scripts.People
             if (bullet != null)
             {
                 Health -= bullet.Damage;
-                _damageBehavior.OnHit(new HitContext { Direction = bullet.transform.forward, Force = bullet.Speed});
+
+                var hitContext = new HitContext {Direction = bullet.transform.forward, Force = bullet.Speed};
+
+                if (Health <= 0)
+                {
+                    _damageBehavior.OnDeath(hitContext);
+                }
+                else
+                {
+                    _damageBehavior.OnHit(hitContext);
+                }
             }
         }
     }
