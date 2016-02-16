@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Utils;
 using Assets.Scripts.Weapons;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Assets.Scripts.Enemy
         public float ViewDistance = 4;
         public float MoveSpeed = 2f;
         public float TurnSpeed = 6f;
+
+        public List<AudioClip> Footsteps;
 
         public EnemyState State = EnemyState.Patrolling;
         private Vector3 _lastKnownLocation;
@@ -119,6 +122,11 @@ namespace Assets.Scripts.Enemy
             }
 
             return false;
+        }
+
+        private void PlayFootstepSound()
+        {
+            AudioSource.PlayClipAtPoint(Footsteps.Random(), transform.position);
         }
 
         void OnTriggerEnter(Collider col)
