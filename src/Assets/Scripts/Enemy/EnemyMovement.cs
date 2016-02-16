@@ -30,14 +30,14 @@ namespace Assets.Scripts.Enemy
                     if (CanSeePlayer())
                     {
                         State = EnemyState.Detect;
-                        GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Walk);
+                        GetComponent<Animator>().SetBool("IsMoving", true);
                     }
                     break;
                 case EnemyState.Patrolling:
                     if (CanSeePlayer())
                     {
                         State = EnemyState.Detect;
-                        GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Walk);
+                        GetComponent<Animator>().SetBool("IsMoving", true);
                     }
                     break;
                 case EnemyState.Searching:
@@ -85,10 +85,13 @@ namespace Assets.Scripts.Enemy
                 if (Vector3.Distance(transform.position, _lastKnownLocation) < .1f)
                 {
                     State = EnemyState.Searching;
+                    GetComponent<Animator>().SetBool("IsMoving", false);
                 }
             }
             else
             {
+                GetComponent<Animator>().SetBool("IsMoving", true);
+
                 _lastKnownLocation = _player.transform.position;
                 GetComponent<NavMeshAgent>().destination = _player.transform.position;
 

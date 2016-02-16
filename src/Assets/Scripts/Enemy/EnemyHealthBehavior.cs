@@ -29,7 +29,7 @@ namespace Assets.Scripts.Enemy
             Destroy(GetComponent<NavMeshAgent>());
 
             _isDead = true;
-            GetComponent<AnimationController>().PlayAnimation(GetComponent<EnemyAnimations>().Die, true);
+            GetComponent<Animator>().SetTrigger("Die");
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
