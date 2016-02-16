@@ -30,6 +30,7 @@ namespace Assets.Scripts.Enemy
 
             _isDead = true;
             GetComponent<Animator>().SetTrigger("Die");
+            gameObject.layer = LayerMask.NameToLayer("TurnStaticSoon");
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
