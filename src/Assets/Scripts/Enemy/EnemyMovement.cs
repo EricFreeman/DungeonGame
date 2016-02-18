@@ -116,12 +116,12 @@ namespace Assets.Scripts.Enemy
 
         private bool CanSeePlayer()
         {
-            var rayDirection = _player.transform.position - transform.position;
+            var rayDirection = _player.transform.position - transform.position - new Vector3(0, .2f);
 
             if ((Vector3.Angle(rayDirection, transform.forward)) < FieldOfView)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, rayDirection, out hit) && Vector3.Distance(transform.position, _player.transform.position) < ViewDistance)
+                if (Physics.Raycast(transform.position + new Vector3(0, .2f), rayDirection, out hit) && Vector3.Distance(transform.position, _player.transform.position) < ViewDistance)
                 {
                     if (hit.transform.tag == "Player")
                     {
