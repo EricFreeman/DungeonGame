@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Gore;
+﻿using Assets.Scripts.Gore;
 using Assets.Scripts.People;
-using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy
@@ -11,14 +9,13 @@ namespace Assets.Scripts.Enemy
         private bool _isDead;
         public Sprite DeadBody;
 
-        public List<AudioClip> Hit;
-        public List<AudioClip> Die;
 
         public void OnHit(HitContext hitContext)
         {
             if (_isDead) return;
 
-            AudioSource.PlayClipAtPoint(Hit.Random(), transform.position);
+            GetComponent<EnemySounds>().PlayHitSound();
+
             var ejector = gameObject.GetComponent<BloodEjector>();
             if (ejector != null)
             {
@@ -36,7 +33,7 @@ namespace Assets.Scripts.Enemy
             _isDead = true;
             GetComponent<Animator>().SetTrigger("Die");
             gameObject.layer = LayerMask.NameToLayer("TurnStaticSoon");
-            AudioSource.PlayClipAtPoint(Die.Random(), transform.position);
+            GetComponent<EnemySounds>().PlayDeathSound();
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);

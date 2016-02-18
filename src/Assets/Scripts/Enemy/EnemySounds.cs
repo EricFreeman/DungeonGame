@@ -1,15 +1,29 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
-public class EnemySounds : MonoBehaviour {
+namespace Assets.Scripts.Enemy
+{
+    public class EnemySounds : MonoBehaviour
+    {
+        public List<AudioClip> Footsteps;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        public List<AudioClip> Hit;
+        public List<AudioClip> Die;
+
+        private void PlayFootstepSound()
+        {
+            AudioSource.PlayClipAtPoint(Footsteps.Random(), transform.position);
+        }
+
+        public void PlayHitSound()
+        {
+            AudioSource.PlayClipAtPoint(Hit.Random(), transform.position);
+        }
+
+        public void PlayDeathSound()
+        {
+            AudioSource.PlayClipAtPoint(Die.Random(), transform.position);
+        }
+    }
 }
