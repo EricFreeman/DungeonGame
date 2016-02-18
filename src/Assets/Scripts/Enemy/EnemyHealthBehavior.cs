@@ -27,6 +27,14 @@ namespace Assets.Scripts.Enemy
         {
             if (_isDead) return;
 
+            var ejector = gameObject.GetComponent<BloodEjector>();
+            if (ejector != null)
+            {
+                ejector.Eject(hitContext);
+                ejector.Eject(hitContext);
+                ejector.Eject(hitContext);
+            }
+
             Destroy(GetComponent<EnemyMovement>());
             Destroy(GetComponent<NavMeshAgent>());
 
