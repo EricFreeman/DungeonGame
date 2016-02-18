@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
 namespace Assets.Scripts.Environment.Interactable
 {
     public class BasicDoor : MonoBehaviour, IInteractable
     {
         public float Speed = .01f;
+        public string RequiredKey;
 
         private bool _wasUsed;
         private Vector3 _startPosition;
@@ -19,11 +21,21 @@ namespace Assets.Scripts.Environment.Interactable
 
         public void Interact()
         {
-            if (!_wasUsed)
+            if (CanUse() && !_wasUsed)
             {
                 _wasUsed = true;
                 _startPosition = transform.position;
             }
+        }
+
+        private bool CanUse()
+        {
+            if (string.IsNullOrEmpty(RequiredKey) || PlayerInventory.HasKey(RequiredKey))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

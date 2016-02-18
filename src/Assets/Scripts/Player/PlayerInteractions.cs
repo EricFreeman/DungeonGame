@@ -31,7 +31,7 @@ namespace Assets.Scripts.Player
                     }
                     else
                     {
-                        InteractionText.text = "Press E to interact.";
+                        InteractionText.text = "Press E to interact";
                     }
                 }
             }
