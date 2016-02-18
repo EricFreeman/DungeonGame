@@ -4,24 +4,24 @@ namespace Assets.Scripts.Player
 {
     public static class PlayerInventory
     {
-        public static List<string> Keys;
+        public static List<string> Items;
 
-        public static bool HasKey(string keyName)
+        public static bool HasItem(string itemName)
         {
-            return Keys.Contains(keyName);
+            return Items.Contains(itemName);
         }
 
-        public static void AddKey(string keyName)
+        public static void AddItem(string itemName)
         {
-            if (!HasKey(keyName))
+            if (!HasItem(itemName))
             {
-                Keys.Add(keyName);
+                Items.Add(itemName);
             }
         }
 
         public static void ClearInventory()
         {
-            Keys.Clear();
+            Items.Clear();
         }
     }
 }

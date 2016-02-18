@@ -30,7 +30,7 @@ namespace Assets.Scripts.Environment.Interactable
 
         private bool CanUse()
         {
-            if (string.IsNullOrEmpty(RequiredKey) || PlayerInventory.HasKey(RequiredKey))
+            if (string.IsNullOrEmpty(RequiredKey) || PlayerInventory.HasItem(RequiredKey))
             {
                 return true;
             }
