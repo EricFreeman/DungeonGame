@@ -13,7 +13,7 @@ namespace Assets.Scripts.Environment.Interactable
         {
             if (_wasUsed)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _startPosition + new Vector3(0, 1, 0), Speed);
+                transform.position = Vector3.MoveTowards(transform.position, _startPosition + new Vector3(1.1f, 0, 0), Speed);
             }
         }
 
