@@ -10,7 +10,7 @@ namespace Assets.Scripts.Enemy
         public float ViewDistance = 4;
         public float MoveSpeed = 2f;
         public float TurnSpeed = 6f;
-
+        public float MinDistance = .75f;
 
         public EnemyState State = EnemyState.Patrolling;
         private Vector3 _lastKnownLocation;
@@ -24,6 +24,8 @@ namespace Assets.Scripts.Enemy
 
         void FixedUpdate()
         {
+            GetComponent<Animator>().SetBool("IsAttacking", false);
+
             switch (State)
             {
                 case EnemyState.Idle:
@@ -90,13 +92,23 @@ namespace Assets.Scripts.Enemy
             }
             else
             {
-                GetComponent<Animator>().SetBool("IsMoving", true);
+                if (Vector3.Distance(transform.position, _player.transform.position) < MinDistance)
+                {
+                    GetComponent<Animator>().SetBool("IsMoving", false);
+                    GetComponent<Animator>().SetBool("IsAttacking", true);
+                    _lastKnownLocation = _player.transform.position;
+                    GetComponent<NavMeshAgent>().destination = transform.position;
+                }
+                else
+                {
+                    GetComponent<Animator>().SetBool("IsMoving", true);
 
-                _lastKnownLocation = _player.transform.position;
-                GetComponent<NavMeshAgent>().destination = _player.transform.position;
+                    _lastKnownLocation = _player.transform.position;
+                    GetComponent<NavMeshAgent>().destination = _player.transform.position;
 
-                var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed * Time.deltaTime);
+                    var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed*Time.deltaTime);
+                }
             }
         }
 
