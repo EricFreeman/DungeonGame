@@ -4,7 +4,7 @@ namespace Assets.Scripts.Player
 {
     public static class PlayerInventory
     {
-        public static List<string> Items;
+        public static List<string> Items = new List<string>();
 
         public static bool HasItem(string itemName)
         {
