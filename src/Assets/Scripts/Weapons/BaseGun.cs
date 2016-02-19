@@ -65,7 +65,10 @@ namespace Assets.Scripts.Weapons
 
         public void RangedAttack()
         {
-            AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);
+            if (Squirt.Count > 0)
+            {
+                AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);
+            }
 
             var bullet = Instantiate(Bullet);
 
