@@ -59,6 +59,18 @@ namespace Assets.Scripts.Player
         {
             // TODO: I know this is shit, but it's 2:30 am so what do you expect?
             CollectedWeapons[weaponId] = true;
+
+            var highestId = CollectedWeapons.Select((s, i) => new {i, s})
+                .Where(t => t.s)
+                .Select(t => t.i)
+                .Max();
+
+            if (weaponId >= highestId)
+            {
+                Destroy(CurrentWeapon);
+                CurrentWeapon = Instantiate(WeaponList[weaponId]);
+                CurrentWeapon.transform.SetParent(Hand.transform, false);
+            }
         }
 
         public bool HasWeapon(int weaponId)
