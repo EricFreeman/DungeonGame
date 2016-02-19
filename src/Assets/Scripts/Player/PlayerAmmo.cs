@@ -48,6 +48,12 @@ namespace Assets.Scripts.Player
                 CurrentWeapon = Instantiate(WeaponList[2]);
                 CurrentWeapon.transform.SetParent(Hand.transform, false);
             }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Destroy(CurrentWeapon);
+                CurrentWeapon = Instantiate(WeaponList[3]);
+                CurrentWeapon.transform.SetParent(Hand.transform, false);
+            }
         }
 
         public int GetAmmo(AmmoType ammoType)
