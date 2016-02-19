@@ -7,6 +7,8 @@ namespace Assets.Scripts.Player
     public class PlayerHealth : MonoBehaviour, IDamageBehavior
     {
         public Text HealthTextBox;
+        public GameObject Hand;
+
         private HealthBehavior _healthBehavior;
 
         void Start()
@@ -35,10 +37,10 @@ namespace Assets.Scripts.Player
             rigidBody.constraints = RigidbodyConstraints.None;
             rigidBody.AddExplosionForce(hitContext.Force * 2, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
 
-            GetComponent<CapsuleCollider>().height = .15f;
-            GetComponent<CapsuleCollider>().radius = .15f;
-            Destroy(GetComponentInChildren<BoxCollider>()); 
+            gameObject.GetComponent<BoxCollider>().center = Vector3.zero;
+            gameObject.GetComponent<BoxCollider>().size = new Vector3(.4f,.3f, .27f);
 
+            Destroy(GetComponent<CapsuleCollider>());
             Destroy(GetComponentInChildren<MouseRotationX>());
             Destroy(GetComponentInChildren<MouseRotationY>());
             Destroy(GetComponentInChildren<KeyboardMovement>());
@@ -46,6 +48,7 @@ namespace Assets.Scripts.Player
             Destroy(GetComponentInChildren<Tilter>());
             Destroy(GetComponentInChildren<PlayerInteractions>());
             Destroy(gameObject.GetComponent<PlayerGun>());
+            Destroy(Hand);
         }
     }
 }
