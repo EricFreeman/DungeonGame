@@ -10,12 +10,13 @@ namespace Assets.Scripts.Environment.Interactable
 
         private bool _wasUsed;
         private Vector3 _startPosition;
+        private Vector3 _endPosition;
 
         void Update()
         {
             if (_wasUsed)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _startPosition + new Vector3(1.1f, 0, 0), Speed);
+                transform.position = Vector3.MoveTowards(transform.position, _endPosition, Speed);
             }
         }
 
@@ -25,6 +26,7 @@ namespace Assets.Scripts.Environment.Interactable
             {
                 _wasUsed = true;
                 _startPosition = transform.position;
+                _endPosition = _startPosition + transform.right*1.1f;
             }
         }
 

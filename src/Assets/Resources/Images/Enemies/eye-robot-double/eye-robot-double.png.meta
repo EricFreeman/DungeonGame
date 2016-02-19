@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: 8457358ff5c107a48be214169ffa4661
+timeCreated: 1455851771
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: eye-robot-double_0
+    21300002: eye-robot-double_1
+    21300004: eye-robot-double_2
+    21300006: eye-robot-double_3
+    21300008: eye-robot-double_4
+    21300010: eye-robot-double_5
+    21300012: eye-robot-double_6
+    21300014: eye-robot-double_7
+    21300016: eye-robot-double_8
+    21300018: eye-robot-double_9
+    21300020: eye-robot-double_10
+    21300022: eye-robot-double_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: eye-robot-double_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 28}
+        - {x: -26, y: 25}
+        - {x: -26, y: -14}
+        - {x: -19, y: -32}
+        - {x: 18, y: -32}
+        - {x: 24, y: -22}
+        - {x: 24, y: 27}
+        - {x: 23, y: 28}
+    - name: eye-robot-double_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 28}
+        - {x: -26, y: 25}
+        - {x: -26, y: -14}
+        - {x: -19, y: -32}
+        - {x: 18, y: -32}
+        - {x: 24, y: -22}
+        - {x: 24, y: 27}
+        - {x: 23, y: 28}
+    - name: eye-robot-double_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 30}
+        - {x: -21, y: 30}
+        - {x: -24, y: 27}
+        - {x: -24, y: -15}
+        - {x: -15, y: -32}
+        - {x: 18, y: -32}
+        - {x: 24, y: -21}
+        - {x: 24, y: 28}
+    - name: eye-robot-double_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 28}
+        - {x: -24, y: -12}
+        - {x: -20, y: -32}
+        - {x: 12, y: -32}
+        - {x: 24, y: -17}
+        - {x: 24, y: 28}
+    - name: eye-robot-double_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 28}
+        - {x: -26, y: 25}
+        - {x: -26, y: -14}
+        - {x: -19, y: -32}
+        - {x: 18, y: -32}
+        - {x: 24, y: -22}
+        - {x: 24, y: 27}
+        - {x: 23, y: 28}
+    - name: eye-robot-double_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 30}
+        - {x: -26, y: 27}
+        - {x: -26, y: -32}
+        - {x: 17, y: -32}
+        - {x: 24, y: -6}
+        - {x: 24, y: 23}
+        - {x: 21, y: 30}
+    - name: eye-robot-double_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 15, y: 28}
+        - {x: -19, y: 28}
+        - {x: -24, y: 20}
+        - {x: -24, y: -10}
+        - {x: -16, y: -32}
+        - {x: 15, y: -32}
+        - {x: 24, y: -1}
+        - {x: 24, y: 26}
+        - {x: 19, y: 27}
+    - name: eye-robot-double_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 29}
+        - {x: -24, y: 26}
+        - {x: -24, y: -21}
+        - {x: -22, y: -32}
+        - {x: 29, y: -32}
+        - {x: 29, y: 27}
+        - {x: 14, y: 29}
+    - name: eye-robot-double_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 28}
+        - {x: -24, y: -32}
+        - {x: 14, y: -32}
+        - {x: 24, y: 6}
+        - {x: 24, y: 28}
+    - name: eye-robot-double_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 28}
+        - {x: -23, y: 20}
+        - {x: -24, y: 17}
+        - {x: -25, y: 11}
+        - {x: -25, y: -17}
+        - {x: -19, y: -32}
+        - {x: 15, y: -32}
+        - {x: 24, y: -15}
+        - {x: 24, y: 24}
+        - {x: 17, y: 28}
+    - name: eye-robot-double_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 28}
+        - {x: -24, y: -30}
+        - {x: -22, y: -32}
+        - {x: 17, y: -32}
+        - {x: 24, y: -13}
+        - {x: 24, y: 23}
+        - {x: 21, y: 28}
+    - name: eye-robot-double_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 28}
+        - {x: -24, y: 21}
+        - {x: -24, y: -32}
+        - {x: 24, y: -32}
+        - {x: 24, y: 28}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
