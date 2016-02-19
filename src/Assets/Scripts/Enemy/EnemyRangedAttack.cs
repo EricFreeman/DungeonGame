@@ -22,7 +22,7 @@ namespace Assets.Scripts.Enemy
         {
             var projectile = Instantiate(Projectile);
             projectile.transform.position = Tip.transform.position;
-            projectile.transform.rotation = Tip.transform.rotation;
+            projectile.transform.LookAt(_player.transform.position);
             projectile.GetComponent<Bullet>().IsFriendly = false;
         }
     }
