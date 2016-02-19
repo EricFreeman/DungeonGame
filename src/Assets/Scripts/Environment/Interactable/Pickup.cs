@@ -10,6 +10,7 @@ namespace Assets.Scripts.Environment.Interactable
         public float OffsetY = .25f;
         public float Speed = 4;
         public float MaxSway = .125f;
+        public AudioClip Take;
 
         private float _swayRatio;
 
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Environment.Interactable
         {
             if (col.name == "Player")
             {
+                AudioSource.PlayClipAtPoint(Take, transform.position);
                 PlayerInventory.AddItem(Name);
                 Destroy(gameObject);
             }

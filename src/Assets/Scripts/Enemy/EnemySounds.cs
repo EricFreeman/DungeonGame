@@ -14,22 +14,30 @@ namespace Assets.Scripts.Enemy
 
         public void PlayAttackSound()
         {
-            AudioSource.PlayClipAtPoint(Attack.Random(), transform.position);
+            if (Attack.Count > 0) {
+                AudioSource.PlayClipAtPoint(Attack.Random(), transform.position);
+            }
         }
         
         private void PlayFootstepSound()
         {
-            AudioSource.PlayClipAtPoint(Footsteps.Random(), transform.position);
+            if (Footsteps.Count > 0) {
+                AudioSource.PlayClipAtPoint(Footsteps.Random(), transform.position);
+            }
         }
 
         public void PlayHitSound()
         {
-            AudioSource.PlayClipAtPoint(Hit.Random(), transform.position);
+            if (Hit.Count > 0) {
+                AudioSource.PlayClipAtPoint(Hit.Random(), transform.position);
+            }
         }
 
         public void PlayDeathSound()
         {
-            AudioSource.PlayClipAtPoint(Die.Random(), transform.position);
+            if (Die.Count > 0) {
+                AudioSource.PlayClipAtPoint(Die.Random(), transform.position);
+            }
         }
     }
 }
