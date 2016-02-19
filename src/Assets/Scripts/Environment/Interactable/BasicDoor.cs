@@ -8,12 +8,21 @@ namespace Assets.Scripts.Environment.Interactable
         public float Speed = .01f;
         public float MoveAmount = 1.1f;
         public string RequiredKey;
+        public int RedDoorAttempts = 0;
         public AudioClip Error;
         public AudioClip Open;
+        public AudioClip KeyCardMessage;
 
         private bool _wasUsed;
         private Vector3 _startPosition;
         private Vector3 _endPosition;
+        private AudioSource _keyCardMessageAudioSource;
+
+        void Start()
+        {
+            _keyCardMessageAudioSource = gameObject.AddComponent<AudioSource>();
+            _keyCardMessageAudioSource.clip = KeyCardMessage;
+        }
 
         void Update()
         {
@@ -27,15 +36,22 @@ namespace Assets.Scripts.Environment.Interactable
         {
             if (CanUse())
             {
-                if (!_wasUsed) {
+                if (!_wasUsed)
+                {
                     _wasUsed = true;
                     _startPosition = transform.position;
                     _endPosition = _startPosition + transform.right * MoveAmount;
                     AudioSource.PlayClipAtPoint(Open, transform.position);
-                }   
+                }
             }
             else {
-                AudioSource.PlayClipAtPoint(Error, transform.position);  
+                AudioSource.PlayClipAtPoint(Error, transform.position);
+
+                RedDoorAttempts++;
+                if (RedDoorAttempts > 2 && !_keyCardMessageAudioSource.isPlaying)
+                {
+                    _keyCardMessageAudioSource.PlayDelayed(0.2f);
+                }
             }
         }
 
