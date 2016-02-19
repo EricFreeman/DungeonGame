@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Gore;
 using Assets.Scripts.People;
 using UnityEngine;
+using UnityEventAggregator;
 
 namespace Assets.Scripts.Enemy
 {
@@ -44,6 +45,8 @@ namespace Assets.Scripts.Enemy
 
             GetComponent<Rigidbody>().isKinematic = false;
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
+            
+            EventAggregator.SendMessage(new EnemyKilledMessage());
         }
     }
 }
