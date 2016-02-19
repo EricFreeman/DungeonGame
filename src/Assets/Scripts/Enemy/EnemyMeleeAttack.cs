@@ -19,6 +19,7 @@ namespace Assets.Scripts.Enemy
         {
             if (Vector3.Distance(transform.position, _player.transform.position) < MinDistance)
             {
+                GetComponent<EnemySounds>().PlayAttackSound();            
                 _player.TakeDamage(Damage);
             }
         }

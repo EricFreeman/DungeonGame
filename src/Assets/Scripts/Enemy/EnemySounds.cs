@@ -8,9 +8,15 @@ namespace Assets.Scripts.Enemy
     {
         public List<AudioClip> Footsteps;
 
+        public List<AudioClip> Attack;
         public List<AudioClip> Hit;
         public List<AudioClip> Die;
 
+        public void PlayAttackSound()
+        {
+            AudioSource.PlayClipAtPoint(Attack.Random(), transform.position);
+        }
+        
         private void PlayFootstepSound()
         {
             AudioSource.PlayClipAtPoint(Footsteps.Random(), transform.position);

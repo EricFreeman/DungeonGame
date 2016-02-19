@@ -20,10 +20,11 @@ namespace Assets.Scripts.Enemy
 
         public void Attack()
         {
+            GetComponent<EnemySounds>().PlayAttackSound();  
             var projectile = Instantiate(Projectile);
             projectile.transform.position = Tip.transform.position;
             projectile.transform.LookAt(_player.transform.position);
-            projectile.GetComponent<Bullet>().IsFriendly = false;
+            projectile.GetComponent<Bullet>().IsFriendly = false; 
         }
     }
 }
