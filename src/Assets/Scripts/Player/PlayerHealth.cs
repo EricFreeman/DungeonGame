@@ -37,7 +37,7 @@ namespace Assets.Scripts.Player
         {
             var rigidBody = GetComponent<Rigidbody>();
             rigidBody.constraints = RigidbodyConstraints.None;
-            rigidBody.AddExplosionForce(hitContext.Force * 2, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
+            rigidBody.AddExplosionForce(hitContext.Force * 2, transform.position - hitContext.Direction, 1f, 3f, ForceMode.Impulse);
 
             gameObject.GetComponent<BoxCollider>().center = Vector3.zero;
             gameObject.GetComponent<BoxCollider>().size = new Vector3(.4f,.3f, .27f);
