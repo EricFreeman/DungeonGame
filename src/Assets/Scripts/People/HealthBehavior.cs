@@ -19,18 +19,22 @@ namespace Assets.Scripts.People
 
             if (bullet != null && ShouldCollideWith(bullet))
             {
-                Health -= bullet.Damage;
+                var hitContext = new HitContext {Direction = bullet.transform.forward, Force = bullet.Speed, Damage = bullet.Damage};
+                TakeDamage(hitContext);
+            }
+        }
 
-                var hitContext = new HitContext {Direction = bullet.transform.forward, Force = bullet.Speed};
+        public void TakeDamage(HitContext context)
+        {
+            Health -= context.Damage;
 
-                if (Health <= 0)
-                {
-                    _damageBehavior.OnDeath(hitContext);
-                }
-                else
-                {
-                    _damageBehavior.OnHit(hitContext);
-                }
+            if (Health <= 0)
+            {
+                _damageBehavior.OnDeath(context);
+            }
+            else
+            {
+                _damageBehavior.OnHit(context);
             }
         }
 

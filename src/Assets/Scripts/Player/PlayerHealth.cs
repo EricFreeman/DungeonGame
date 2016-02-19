@@ -33,6 +33,19 @@ namespace Assets.Scripts.Player
         {
             var rigidBody = GetComponent<Rigidbody>();
             rigidBody.constraints = RigidbodyConstraints.None;
+            rigidBody.AddExplosionForce(hitContext.Force * 2, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
+
+            GetComponent<CapsuleCollider>().height = .15f;
+            GetComponent<CapsuleCollider>().radius = .15f;
+            Destroy(GetComponentInChildren<BoxCollider>()); 
+
+            Destroy(GetComponentInChildren<MouseRotationX>());
+            Destroy(GetComponentInChildren<MouseRotationY>());
+            Destroy(GetComponentInChildren<KeyboardMovement>());
+            Destroy(GetComponentInChildren<Bobber>());
+            Destroy(GetComponentInChildren<Tilter>());
+            Destroy(GetComponentInChildren<PlayerInteractions>());
+            Destroy(gameObject.GetComponent<PlayerGun>());
         }
     }
 }

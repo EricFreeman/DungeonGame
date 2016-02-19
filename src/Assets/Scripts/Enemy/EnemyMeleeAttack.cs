@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player;
+﻿using Assets.Scripts.People;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemy
@@ -20,7 +21,13 @@ namespace Assets.Scripts.Enemy
             if (Vector3.Distance(transform.position, _player.transform.position) < MinDistance)
             {
                 GetComponent<EnemySounds>().PlayAttackSound();            
-                _player.TakeDamage(Damage);
+                var hitContext = new HitContext
+                {
+                    Force = 3,
+                    Damage = Damage,
+                    Direction = transform.forward
+                };
+                _player.GetComponent<HealthBehavior>().TakeDamage(hitContext);
             }
         }
     }
