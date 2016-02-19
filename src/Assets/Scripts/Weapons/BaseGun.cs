@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Player;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -6,13 +7,19 @@ namespace Assets.Scripts.Weapons
 {
     public class BaseGun : MonoBehaviour
     {
-        public int Ammunition;
+        public AmmoType AmmunitionType;
         public GameObject Bullet;
         public Transform Tip;
         public List<AudioClip> Squirt;
-
         public float ShotDelay = .1f;
+
         private float _lastShot;
+        private PlayerAmmo _ammo;
+
+        void Start()
+        {
+            _ammo = FindObjectOfType<PlayerAmmo>();
+        }
 
         public void Fire()
         {
@@ -50,13 +57,13 @@ namespace Assets.Scripts.Weapons
 
                 _lastShot = Time.fixedTime;
                 GetComponent<Animator>().SetTrigger("Fire");
-                Ammunition--;
+                _ammo.RemoveAmmo(AmmoType.Solution, 1);
             }
         }
 
         private bool CanFire()
         {
-            var ammunitionIsNotEmpty = Ammunition > 0;
+            var ammunitionIsNotEmpty = (AmmunitionType == AmmoType.Infinite || _ammo.HasAmmo(AmmunitionType, 1));
             var itHasBeenLongEnoughSinceTheLastShot = Time.fixedTime - _lastShot > ShotDelay;
 
             return ammunitionIsNotEmpty && itHasBeenLongEnoughSinceTheLastShot;
