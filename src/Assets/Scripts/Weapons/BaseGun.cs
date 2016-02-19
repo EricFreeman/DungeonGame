@@ -45,6 +45,8 @@ namespace Assets.Scripts.Weapons
 
         public void MeleeAttack()
         {
+            _lastShot = Time.fixedTime;
+
             var ray = _viewCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
 
