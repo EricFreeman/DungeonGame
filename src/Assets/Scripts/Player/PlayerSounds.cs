@@ -8,6 +8,8 @@ namespace Assets.Scripts.Enemy
     public class PlayerSounds : MonoBehaviour, IListener<EnemyKilledMessage>
     {
         public List<AudioClip> EnemyKilled;
+        
+        private int _enemiesKilled = 0;
 
         public void Start()
         {
@@ -19,8 +21,9 @@ namespace Assets.Scripts.Enemy
             this.UnRegister<EnemyKilledMessage>();
         }
         
-        public void Handle(EnemyKilledMessage message) {   
-            if (EnemyKilled.Count > 0) {
+        public void Handle(EnemyKilledMessage message) {
+            _enemiesKilled++;
+            if (EnemyKilled.Count > 0 && _enemiesKilled % 3 == 0) {
                 AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.clip = EnemyKilled.Random();
                 audioSource.PlayDelayed(0.5f);
