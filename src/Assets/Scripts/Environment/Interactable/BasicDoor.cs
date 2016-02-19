@@ -8,6 +8,8 @@ namespace Assets.Scripts.Environment.Interactable
         public float Speed = .01f;
         public float MoveAmount = 1.1f;
         public string RequiredKey;
+        public AudioClip Error;
+        public AudioClip Open;
 
         private bool _wasUsed;
         private Vector3 _startPosition;
@@ -23,11 +25,17 @@ namespace Assets.Scripts.Environment.Interactable
 
         public void Interact()
         {
-            if (CanUse() && !_wasUsed)
+            if (CanUse())
             {
-                _wasUsed = true;
-                _startPosition = transform.position;
-                _endPosition = _startPosition + transform.right * MoveAmount;
+                if (!_wasUsed) {
+                    _wasUsed = true;
+                    _startPosition = transform.position;
+                    _endPosition = _startPosition + transform.right * MoveAmount;
+                    AudioSource.PlayClipAtPoint(Open, transform.position);
+                }   
+            }
+            else {
+                AudioSource.PlayClipAtPoint(Error, transform.position);  
             }
         }
 
