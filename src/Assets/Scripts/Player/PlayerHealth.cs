@@ -31,7 +31,8 @@ namespace Assets.Scripts.Player
 
         public void OnDeath(HitContext hitContext)
         {
-            // TODO: Kill player here
+            var rigidBody = GetComponent<Rigidbody>();
+            rigidBody.constraints = RigidbodyConstraints.None;
         }
     }
 }
