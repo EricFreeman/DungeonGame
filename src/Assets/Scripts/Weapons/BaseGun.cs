@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Enemy;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utils;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Weapons
     {
         public AmmoType AmmunitionType;
         public GameObject Bullet;
+        public bool IsMelee;
         public Transform Tip;
         public List<AudioClip> Squirt;
         public float ShotDelay = .1f;
@@ -25,40 +27,58 @@ namespace Assets.Scripts.Weapons
         {
             if (CanFire())
             {
-                AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);                
-                
-                var bullet = Instantiate(Bullet);
+                GetComponent<Animator>().SetTrigger("Fire");
 
-                if (Tip != null)
+                if (IsMelee)
                 {
-                    var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-                    RaycastHit hit;
-                    Vector3 dir;
-
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        dir = (hit.point - Tip.transform.position).normalized;
-                    }
-                    else
-                    {
-                        dir = ray.direction;
-                    }
-
-                    bullet.transform.position = Tip.transform.position;
-                    bullet.transform.rotation = Quaternion.LookRotation(dir);
+                    MeleeAttack();
                 }
                 else
                 {
-                    bullet.transform.position = transform.position;
-                    bullet.transform.rotation = transform.rotation;
+                    RangedAttack();
+                }
+            }
+        }
+
+        public void MeleeAttack()
+        {
+            
+        }
+
+        public void RangedAttack()
+        {
+            AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);
+
+            var bullet = Instantiate(Bullet);
+
+            if (Tip != null)
+            {
+                var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                RaycastHit hit;
+                Vector3 dir;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    dir = (hit.point - Tip.transform.position).normalized;
+                }
+                else
+                {
+                    dir = ray.direction;
                 }
 
-                bullet.GetComponent<Bullet>().Damage = Random.Range(1, 5);
-
-                _lastShot = Time.fixedTime;
-                GetComponent<Animator>().SetTrigger("Fire");
-                _ammo.RemoveAmmo(AmmoType.Solution, 1);
+                bullet.transform.position = Tip.transform.position;
+                bullet.transform.rotation = Quaternion.LookRotation(dir);
             }
+            else
+            {
+                bullet.transform.position = transform.position;
+                bullet.transform.rotation = transform.rotation;
+            }
+
+            bullet.GetComponent<Bullet>().Damage = Random.Range(1, 5);
+
+            _lastShot = Time.fixedTime;
+            _ammo.RemoveAmmo(AmmoType.Solution, 1);
         }
 
         private bool CanFire()
