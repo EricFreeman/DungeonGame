@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
@@ -7,6 +9,7 @@ namespace Assets.Scripts.Weapons
         public int Ammunition;
         public GameObject Bullet;
         public Transform Tip;
+        public List<AudioClip> Squirt;
 
         public float ShotDelay = .1f;
         private float _lastShot;
@@ -15,6 +18,8 @@ namespace Assets.Scripts.Weapons
         {
             if (CanFire())
             {
+                AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);                
+                
                 var bullet = Instantiate(Bullet);
 
                 if (Tip != null)
