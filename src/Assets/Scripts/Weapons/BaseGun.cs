@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Enemy;
+using Assets.Scripts.People;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utils;
 using UnityEngine;
@@ -17,10 +18,12 @@ namespace Assets.Scripts.Weapons
 
         private float _lastShot;
         private PlayerAmmo _ammo;
+        private UnityEngine.Camera _viewCamera;
 
         void Start()
         {
             _ammo = FindObjectOfType<PlayerAmmo>();
+            _viewCamera = GameObject.Find("HeadCamera").GetComponent<UnityEngine.Camera>();
         }
 
         public void Fire()
@@ -42,7 +45,22 @@ namespace Assets.Scripts.Weapons
 
         public void MeleeAttack()
         {
-            
+            var ray = _viewCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit) && Vector3.Distance(transform.position, hit.point) < .5f)
+            {
+                if (hit.collider.tag == "Enemy")
+                {
+                    var hitContext = new HitContext
+                    {
+                        Damage = Random.Range(0, 2),
+                        Direction = transform.forward,
+                        Force = 1
+                    };
+                    hit.collider.GetComponent<HealthBehavior>().TakeDamage(hitContext);
+                }
+            }
         }
 
         public void RangedAttack()
@@ -53,7 +71,7 @@ namespace Assets.Scripts.Weapons
 
             if (Tip != null)
             {
-                var ray = UnityEngine.Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                var ray = _viewCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
                 Vector3 dir;
 
