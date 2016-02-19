@@ -9,7 +9,6 @@ namespace Assets.Scripts.Enemy
         private bool _isDead;
         public Sprite DeadBody;
 
-
         public void OnHit(HitContext hitContext)
         {
             if (_isDead) return;

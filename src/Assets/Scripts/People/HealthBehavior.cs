@@ -13,16 +13,11 @@ namespace Assets.Scripts.People
             _damageBehavior = GetComponent<IDamageBehavior>();
         }
 
-        void Update()
-        {
-            
-        }
-
         void OnTriggerEnter(Collider col)
         {
             var bullet = col.GetComponent<Bullet>();
 
-            if (bullet != null)
+            if (bullet != null && ShouldCollideWith(bullet))
             {
                 Health -= bullet.Damage;
 
@@ -37,6 +32,11 @@ namespace Assets.Scripts.People
                     _damageBehavior.OnHit(hitContext);
                 }
             }
+        }
+
+        private bool ShouldCollideWith(Bullet bullet)
+        {
+            return ((bullet.IsFriendly && transform.tag != "Player") || (!bullet.IsFriendly && transform.tag == "Player"));
         }
     }
 }
