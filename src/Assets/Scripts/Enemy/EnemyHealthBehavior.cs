@@ -16,10 +16,12 @@ namespace Assets.Scripts.Enemy
 
             GetComponent<EnemySounds>().PlayHitSound();
 
-            var ejector = gameObject.GetComponent<BloodEjector>();
-            if (ejector != null)
-            {
-                ejector.Eject(hitContext);
+            if (!hitContext.IsMelee) {
+                var ejector = gameObject.GetComponent<BloodEjector>();
+                if (ejector != null)
+                {
+                    ejector.Eject(hitContext);
+                }
             }
         }
 
@@ -27,12 +29,14 @@ namespace Assets.Scripts.Enemy
         {
             if (_isDead) return;
 
-            var ejector = gameObject.GetComponent<BloodEjector>();
-            if (ejector != null)
-            {
-                ejector.Eject(hitContext);
-                ejector.Eject(hitContext);
-                ejector.Eject(hitContext);
+            if (!hitContext.IsMelee) {
+                var ejector = gameObject.GetComponent<BloodEjector>();
+                if (ejector != null)
+                {
+                    ejector.Eject(hitContext);
+                    ejector.Eject(hitContext);
+                    ejector.Eject(hitContext);
+                }
             }
 
             Destroy(GetComponent<EnemyMovement>());

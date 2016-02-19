@@ -25,7 +25,8 @@ namespace Assets.Scripts.Enemy
                 {
                     Force = 3,
                     Damage = Damage,
-                    Direction = transform.forward
+                    Direction = transform.forward,
+                    IsMelee = true
                 };
                 _player.GetComponent<HealthBehavior>().TakeDamage(hitContext);
             }

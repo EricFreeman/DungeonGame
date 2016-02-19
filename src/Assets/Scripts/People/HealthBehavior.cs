@@ -19,7 +19,12 @@ namespace Assets.Scripts.People
 
             if (bullet != null && ShouldCollideWith(bullet))
             {
-                var hitContext = new HitContext {Direction = bullet.transform.forward, Force = bullet.Speed, Damage = bullet.Damage};
+                var hitContext = new HitContext {
+                    Direction = bullet.transform.forward, 
+                    Force = bullet.Speed, 
+                    Damage = bullet.Damage, 
+                    IsMelee = false
+                };
                 TakeDamage(hitContext);
             }
         }

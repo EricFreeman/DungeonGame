@@ -56,7 +56,8 @@ namespace Assets.Scripts.Weapons
                     {
                         Damage = Random.Range(0, 2),
                         Direction = transform.forward,
-                        Force = 1
+                        Force = 1,
+                        IsMelee = true                    
                     };
                     hit.collider.GetComponent<HealthBehavior>().TakeDamage(hitContext);
                 }
