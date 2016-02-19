@@ -44,7 +44,7 @@ namespace Assets.Scripts.Weapons
                 bullet.GetComponent<Bullet>().Damage = Random.Range(1, 5);
 
                 _lastShot = Time.fixedTime;
-
+                GetComponent<Animator>().SetTrigger("Fire");
                 Ammunition--;
             }
         }
