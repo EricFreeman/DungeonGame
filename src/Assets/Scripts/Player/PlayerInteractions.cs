@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player
         public Text InteractionText;
         public float InteractionDistance = 1;
 
-        private void FixedUpdate()
+        private void Update()
         {
             InteractionText.text = "";
 
