@@ -17,8 +17,7 @@ namespace Assets.Scripts.Player
         {
             _ammo = new Dictionary<AmmoType, int>
             {
-                { AmmoType.Infinite, 666 },
-                { AmmoType.Solution, 100 }
+                { AmmoType.Infinite, 666 }
             };
 
             if (CurrentWeapon == null)
@@ -30,30 +29,41 @@ namespace Assets.Scripts.Player
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && HasWeapon(0))
             {
                 Destroy(CurrentWeapon);
                 CurrentWeapon = Instantiate(WeaponList[0]);
                 CurrentWeapon.transform.SetParent(Hand.transform, false);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && HasWeapon(1))
             {
                 Destroy(CurrentWeapon);
                 CurrentWeapon = Instantiate(WeaponList[1]);
                 CurrentWeapon.transform.SetParent(Hand.transform, false);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && HasWeapon(2))
             {
                 Destroy(CurrentWeapon);
                 CurrentWeapon = Instantiate(WeaponList[2]);
                 CurrentWeapon.transform.SetParent(Hand.transform, false);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && HasWeapon(3))
             {
                 Destroy(CurrentWeapon);
                 CurrentWeapon = Instantiate(WeaponList[3]);
                 CurrentWeapon.transform.SetParent(Hand.transform, false);
             }
+        }
+
+        public void CollectWeapon(int weaponId)
+        {
+            // TODO: I know this is shit, but it's 2:30 am so what do you expect?
+            CollectedWeapons[weaponId] = true;
+        }
+
+        public bool HasWeapon(int weaponId)
+        {
+            return CollectedWeapons.Count > weaponId && CollectedWeapons[weaponId];
         }
 
         public int GetAmmo(AmmoType ammoType)
