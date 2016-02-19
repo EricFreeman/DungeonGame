@@ -7,6 +7,7 @@ namespace Assets.Scripts.Player
     public class PlayerHealth : MonoBehaviour, IDamageBehavior
     {
         public Text HealthTextBox;
+        public Image HealthImage;
         public GameObject Hand;
 
         private HealthBehavior _healthBehavior;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Player
         void Update()
         {
             HealthTextBox.text = "Health: " + _healthBehavior.Health;
+            HealthImage.color = new Color(255, 0, 0, 1 - _healthBehavior.Health / 100f);
         }
 
         public void TakeDamage(int damage)

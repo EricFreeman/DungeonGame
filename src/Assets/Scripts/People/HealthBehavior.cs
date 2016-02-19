@@ -30,6 +30,7 @@ namespace Assets.Scripts.People
 
             if (Health <= 0)
             {
+                Health = 0;
                 _damageBehavior.OnDeath(context);
             }
             else
