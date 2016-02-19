@@ -6,6 +6,7 @@ namespace Assets.Scripts.Environment.Interactable
     public class BasicDoor : MonoBehaviour, IInteractable
     {
         public float Speed = .01f;
+        public float MoveAmount = 1.1f;
         public string RequiredKey;
 
         private bool _wasUsed;
@@ -26,7 +27,7 @@ namespace Assets.Scripts.Environment.Interactable
             {
                 _wasUsed = true;
                 _startPosition = transform.position;
-                _endPosition = _startPosition + transform.right*1.1f;
+                _endPosition = _startPosition + transform.right * MoveAmount;
             }
         }
 
