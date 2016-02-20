@@ -7,6 +7,8 @@ namespace Assets.Scripts.Weapons
         public float Speed;
         public int Damage = 10;
 
+        public bool IsFriendly;
+
         void Update()
         {
             transform.position += (transform.forward.normalized * Speed * Time.deltaTime);
@@ -14,7 +16,7 @@ namespace Assets.Scripts.Weapons
 
         private void OnTriggerEnter(Collider col)
         {
-            if (col.tag != "Player")
+            if ((IsFriendly && col.tag != "Player") || !IsFriendly && col.tag == "Player")
             {
                 Destroy(gameObject);
             }

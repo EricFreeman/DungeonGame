@@ -6,5 +6,7 @@ namespace Assets.Scripts.People
     {
         public float Force;
         public Vector3 Direction;
+        public int Damage;
+        public bool IsMelee;
     }
 }

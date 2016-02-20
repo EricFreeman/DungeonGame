@@ -13,30 +13,40 @@ namespace Assets.Scripts.People
             _damageBehavior = GetComponent<IDamageBehavior>();
         }
 
-        void Update()
-        {
-            
-        }
-
         void OnTriggerEnter(Collider col)
         {
             var bullet = col.GetComponent<Bullet>();
 
-            if (bullet != null)
+            if (bullet != null && ShouldCollideWith(bullet))
             {
-                Health -= bullet.Damage;
-
-                var hitContext = new HitContext {Direction = bullet.transform.forward, Force = bullet.Speed};
-
-                if (Health <= 0)
-                {
-                    _damageBehavior.OnDeath(hitContext);
-                }
-                else
-                {
-                    _damageBehavior.OnHit(hitContext);
-                }
+                var hitContext = new HitContext {
+                    Direction = bullet.transform.forward, 
+                    Force = bullet.Speed, 
+                    Damage = bullet.Damage, 
+                    IsMelee = false
+                };
+                TakeDamage(hitContext);
             }
+        }
+
+        public void TakeDamage(HitContext context)
+        {
+            Health -= context.Damage;
+
+            if (Health <= 0)
+            {
+                Health = 0;
+                _damageBehavior.OnDeath(context);
+            }
+            else
+            {
+                _damageBehavior.OnHit(context);
+            }
+        }
+
+        private bool ShouldCollideWith(Bullet bullet)
+        {
+            return ((bullet.IsFriendly && transform.tag != "Player") || (!bullet.IsFriendly && transform.tag == "Player"));
         }
     }
 }
