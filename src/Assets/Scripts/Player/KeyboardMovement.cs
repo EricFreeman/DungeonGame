@@ -39,21 +39,22 @@ namespace Assets.Scripts.Player
 
             var movement = (speed > 0 ? moveVector : _lastDirection) * _currentMoveSpeed * Time.deltaTime;
             var rayDistance = .4f;
+            var offset = new Vector3(0, -.2f, 0);
 
-            if (movement.z > 0 && Physics.Raycast(transform.position, transform.forward, rayDistance, 1 << 8))
+            if (movement.z > 0 && Physics.Raycast(transform.position + offset, transform.forward, rayDistance, 1 << 8))
             {
                 movement = new Vector3(movement.x, movement.y, 0);
             }
-            else if (movement.z < 0 && Physics.Raycast(transform.position, -transform.forward, rayDistance, 1 << 8))
+            else if (movement.z < 0 && Physics.Raycast(transform.position + offset, -transform.forward, rayDistance, 1 << 8))
             {
                 movement = new Vector3(movement.x, movement.y, 0);
             }
 
-            if (movement.x > 0 && Physics.Raycast(transform.position, transform.right, rayDistance, 1 << 8))
+            if (movement.x > 0 && Physics.Raycast(transform.position + offset, transform.right, rayDistance, 1 << 8))
             {
                 movement = new Vector3(0, movement.y, movement.z);
             }
-            else if (movement.x < 0 && Physics.Raycast(transform.position, -transform.right, rayDistance, 1 << 8))
+            else if (movement.x < 0 && Physics.Raycast(transform.position + offset, -transform.right, rayDistance, 1 << 8))
             {
                 movement = new Vector3(0, movement.y, movement.z);
             }
