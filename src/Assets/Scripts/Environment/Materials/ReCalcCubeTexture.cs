@@ -37,20 +37,18 @@ namespace Assets.Scripts.Environment.Materials
         {
             Mesh mesh;
 
-            #if UNITY_EDITOR
+//            #if UNITY_EDITOR
 
             var meshFilter = GetComponent<MeshFilter>();
             var meshCopy = Instantiate(meshFilter.sharedMesh);
 
-            return meshCopy;
-
             mesh = meshFilter.mesh = meshCopy;
 
-            #else
-            
-            mesh = GetComponent<MeshFilter>().mesh
-
-            #endif
+//            #else
+//            
+//            mesh = GetComponent<MeshFilter>().mesh
+//
+//            #endif
 
             return mesh;
         }
