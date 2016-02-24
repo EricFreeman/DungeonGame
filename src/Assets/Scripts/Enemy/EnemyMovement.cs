@@ -82,6 +82,8 @@ namespace Assets.Scripts.Enemy
         {
             if (!CanSeePlayer())
             {
+                GetComponent<Animator>().SetBool("IsMoving", true);
+
                 GetComponent<NavMeshAgent>().destination = _lastKnownLocation;
 
                 if (Vector3.Distance(transform.position, _lastKnownLocation) < .1f)
