@@ -13,7 +13,7 @@ namespace Assets.Scripts.Weapons
         public GameObject Bullet;
         public bool IsMelee;
         public Transform Tip;
-        public List<AudioClip> Squirt;
+        public List<AudioClip> AttackSound;
         public float ShotDelay = .1f;
 
         private float _lastShot;
@@ -68,9 +68,9 @@ namespace Assets.Scripts.Weapons
 
         public void RangedAttack()
         {
-            if (Squirt.Count > 0)
+            if (AttackSound.Count > 0)
             {
-                AudioSource.PlayClipAtPoint(Squirt.Random(), transform.position);
+                AudioSource.PlayClipAtPoint(AttackSound.Random(), transform.position);
             }
 
             var bullet = Instantiate(Bullet);
