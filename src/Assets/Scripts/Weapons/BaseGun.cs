@@ -87,7 +87,7 @@ namespace Assets.Scripts.Weapons
                 }
                 else
                 {
-                    dir = ray.direction;
+                    dir = _viewCamera.transform.forward;
                 }
 
                 bullet.transform.position = Tip.transform.position;
