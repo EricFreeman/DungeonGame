@@ -14,6 +14,7 @@ namespace Assets.Scripts.Enemy
         {
             if (_isDead) return;
 
+            GetComponent<Animator>().SetTrigger("IsHit");
             GetComponent<EnemySounds>().PlayHitSound();
 
             if (!hitContext.IsMelee) {
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Enemy
                     ejector.Eject(hitContext);
                 }
             }
+            Debug.Log("hit");
         }
 
         public void OnDeath(HitContext hitContext)
@@ -43,7 +45,8 @@ namespace Assets.Scripts.Enemy
             Destroy(GetComponent<NavMeshAgent>());
 
             _isDead = true;
-            GetComponent<Animator>().SetTrigger("Die");
+            GetComponent<Animator>().SetBool("IsDead", true);
+            GetComponent<Animator>().SetBool("IsAttacking", false);
             gameObject.layer = LayerMask.NameToLayer("TurnStaticSoon");
             GetComponent<EnemySounds>().PlayDeathSound();
 
@@ -51,6 +54,7 @@ namespace Assets.Scripts.Enemy
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
             
             EventAggregator.SendMessage(new EnemyKilledMessage());
+            Debug.Log("dead");
         }
     }
 }
