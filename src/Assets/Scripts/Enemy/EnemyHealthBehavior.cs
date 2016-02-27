@@ -10,9 +10,24 @@ namespace Assets.Scripts.Enemy
         private bool _isDead;
         public Sprite DeadBody;
 
+        private Vector3 _pushback;
+
+        void Update()
+        {
+            _pushback *= .9f;
+            if (_pushback.magnitude < .01f)
+            {
+                _pushback = Vector3.zero;
+            }
+
+            transform.position += _pushback;
+        }
+
         public void OnHit(HitContext hitContext)
         {
             if (_isDead) return;
+
+            _pushback = hitContext.Direction / 20.0f;
 
             GetComponent<Animator>().SetTrigger("IsHit");
             GetComponent<EnemySounds>().PlayHitSound();
@@ -24,7 +39,6 @@ namespace Assets.Scripts.Enemy
                     ejector.Eject(hitContext);
                 }
             }
-            Debug.Log("hit");
         }
 
         public void OnDeath(HitContext hitContext)
@@ -54,7 +68,6 @@ namespace Assets.Scripts.Enemy
             GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
             
             EventAggregator.SendMessage(new EnemyKilledMessage());
-            Debug.Log("dead");
         }
     }
 }
