@@ -43,6 +43,8 @@ namespace Assets.Scripts.Enemy
 
         public void OnDeath(HitContext hitContext)
         {
+            _pushback = hitContext.Direction / 20.0f;
+
             if (_isDead) return;
 
             if (!hitContext.IsMelee) {

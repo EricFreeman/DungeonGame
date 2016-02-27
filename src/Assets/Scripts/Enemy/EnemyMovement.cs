@@ -134,7 +134,7 @@ namespace Assets.Scripts.Enemy
             }
 
             return false;
-        } 
+        }
 
         void OnTriggerEnter(Collider col)
         {
