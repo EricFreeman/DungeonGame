@@ -67,7 +67,7 @@ namespace Assets.Scripts.Enemy
             GetComponent<EnemySounds>().PlayDeathSound();
 
             GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force, transform.position - hitContext.Direction, 1f, 1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddExplosionForce(hitContext.Force / 2.0f, transform.position - hitContext.Direction, 1f, .5f, ForceMode.Impulse);
             
             EventAggregator.SendMessage(new EnemyKilledMessage());
         }
