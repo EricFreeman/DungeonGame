@@ -23,30 +23,61 @@ namespace Assets.Scripts.Gore
 
         void Update()
         {
-//            CheckFourCornersCollideWithGround();
-            for(var i = 0; i < _debugTraceLines.Length; i++)
+            var extents = GetComponent<SpriteRenderer>().bounds.extents;
+            if (extents.normalized.x < .5f) extents.x = 0f;
+            if (extents.normalized.y < .5f) extents.y = 0f;
+            if (extents.normalized.z < .5f) extents.z = 0f;
+
+            var otherExtents = extents;
+            if (Math.Abs(otherExtents.x) < .1f)
             {
-//                _debugTraceLines[i] = RotatePointAroundPivot(_debugTraceLines[i], gameObject.transform.position, gameObject.transform.rotation.eulerAngles * .1f);
-                var ray = _debugTraceLines[i];
-                Debug.DrawRay(ray, transform.forward * _traceLength);
+                otherExtents.y = -otherExtents.y;
             }
+            else
+            {
+                otherExtents.x = -otherExtents.x;
+            }
+
+            Debug.DrawLine(transform.position, transform.position + extents);
+            Debug.DrawLine(transform.position, transform.position - extents);
+            Debug.DrawLine(transform.position, transform.position + otherExtents);
+            Debug.DrawLine(transform.position, transform.position - otherExtents);
+
+            Debug.DrawLine(transform.position + extents, transform.position + extents + transform.forward * .1f);
+            Debug.DrawLine(transform.position - extents, transform.position - extents + transform.forward * .1f);
+            Debug.DrawLine(transform.position + otherExtents, transform.position + otherExtents + transform.forward * .1f);
+            Debug.DrawLine(transform.position - otherExtents, transform.position - otherExtents + transform.forward * .1f);
         }
 
         private void CheckFourCornersCollideWithGround()
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
-            var width = spriteRenderer.bounds.extents.x;
-            var height = spriteRenderer.bounds.extents.z;
+            var x = spriteRenderer.bounds.extents.x;
+            var y = spriteRenderer.bounds.extents.y;
+            var z = spriteRenderer.bounds.extents.z;
 
-            var isRotated = Math.Abs(transform.forward.y) < .1f;
+            if (x < .05f) x = 0f;
+            if (y < .05f) y = 0f;
+            if (z < .05f) z = 0f;
 
             var corners = new[]
             {
-                transform.position + new Vector3(-width, 0, -height),
-                transform.position + new Vector3(-width, 0, height),
-                transform.position + new Vector3(width, 0, -height),
-                transform.position + new Vector3(width, 0, height)
+                transform.position + new Vector3(-x, -y, -z),
+                transform.position + new Vector3(-x, y, z),
+                transform.position + new Vector3(x, -y, -z),
+                transform.position + new Vector3(x, y, z)
             };
+
+            if (Math.Abs(Math.Abs(transform.forward.x) - 1) < .01f)
+            {
+                corners = new[]
+                {
+                    transform.position + new Vector3(-z, -y, 0),
+                    transform.position + new Vector3(-z, y, 0),
+                    transform.position + new Vector3(z, -y, 0),
+                    transform.position + new Vector3(z, y, 0)
+                };
+            }
 
             _debugTraceLines = corners;
 
