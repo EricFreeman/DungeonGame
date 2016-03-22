@@ -6,6 +6,22 @@ namespace Assets.Scripts.Gore
     {
         public GameObject BloodSplat;
 
+        private float _spawnTime;
+        private float _selfDestructTime = 1f;
+
+        void Start()
+        {
+            _spawnTime = Time.time;
+        }
+
+        void Update()
+        {
+            if (Time.time - _spawnTime > _selfDestructTime)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         void OnCollisionEnter(Collision col)
         {
             var splat = Instantiate(BloodSplat);

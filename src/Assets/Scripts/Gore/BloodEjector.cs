@@ -14,7 +14,7 @@ namespace Assets.Scripts.Gore
         public void Eject(HitContext hitContext)
         {
             // initial burst
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var blood = Instantiate(BloodDroplet);
                 blood.transform.position = transform.position + new Vector3(0, .2f, 0);
