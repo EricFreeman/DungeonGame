@@ -11,15 +11,20 @@ namespace Assets.Scripts.Enemy
         public float MoveSpeed = 2f;
         public float TurnSpeed = 6f;
         public float MinDistance = .75f;
-
         public EnemyState State = EnemyState.Patrolling;
-        private Vector3 _lastKnownLocation;
 
+        private Vector3 _lastKnownLocation; 
         private GameObject _player;
+
+        private NavMeshAgent _navAgent;
+        private bool _traversingLink;
+        private OffMeshLinkData _currLink;
 
         void Start()
         {
             _player = GameObject.Find("Player");
+            _navAgent = GetComponent<NavMeshAgent>();
+            _navAgent.autoTraverseOffMeshLink = false;
         }
 
         void FixedUpdate()
@@ -103,13 +108,74 @@ namespace Assets.Scripts.Enemy
                 }
                 else
                 {
-                    GetComponent<Animator>().SetBool("IsMoving", true);
+                    if (_navAgent.isOnOffMeshLink)
+                    {
+                        if (!_traversingLink)
+                        {
+                            _currLink = _navAgent.currentOffMeshLinkData;
+                            _traversingLink = true;
+                        }
 
-                    _lastKnownLocation = _player.transform.position;
-                    GetComponent<NavMeshAgent>().destination = _player.transform.position;
+                        var tlerp = .1f;
+                        var newPos = Vector3.Lerp(_currLink.startPos, _currLink.endPos, tlerp);
+                        newPos.y += 2f*Mathf.Sin(Mathf.PI*tlerp);
+                        transform.position = newPos;
 
-                    var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed*Time.deltaTime);
+                        if (_currLink.startPos == _currLink.endPos)
+                        {
+                            transform.position = _currLink.endPos;
+                            _traversingLink = false;
+                            _navAgent.CompleteOffMeshLink();
+                            _navAgent.Resume();
+                        }
+                    }
+                    else
+                    {
+                        GetComponent<Animator>().SetBool("IsMoving", true);
+
+                        _lastKnownLocation = _player.transform.position;
+                        GetComponent<NavMeshAgent>().destination = _player.transform.position;
+
+                        var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed*Time.deltaTime);
+                    }
+                }
+            }
+        }
+
+        private void JumpBullshit()
+        {
+            if (_navAgent.isOnOffMeshLink)
+            {
+                if (!_traversingLink)
+                {
+                    //This is done only once. The animation's progress will determine link traversal.
+                    //cache current link
+                    _currLink = _navAgent.currentOffMeshLinkData;
+                    //start traversing
+                    _traversingLink = true;
+                }
+
+                //lerp from link start to link end in time to animation
+                var tlerp = .1f;
+                //straight line from startlink to endlink
+                var newPos = Vector3.Lerp(_currLink.startPos, _currLink.endPos, tlerp);
+                //add the 'hop'
+                newPos.y += 2f * Mathf.Sin(Mathf.PI * tlerp);
+                //Update transform position
+                transform.position = newPos;
+
+                // when the animation is stopped, we've reached the other side. Don't use looping animations with this control setup
+                if (_currLink.startPos == _currLink.endPos)
+                {
+                    //make sure the player is right on the end link
+                    transform.position = _currLink.endPos;
+                    //internal logic reset
+                    _traversingLink = false;
+                    //Tell unity we have traversed the link
+                    _navAgent.CompleteOffMeshLink();
+                    //Resume normal navmesh behaviour
+                    _navAgent.Resume();
                 }
             }
         }
@@ -123,7 +189,6 @@ namespace Assets.Scripts.Enemy
             if ((Vector3.Angle(rayDirection, transform.forward)) < FieldOfView)
             {
                 RaycastHit hit;
-//                Debug.DrawRay(transform.position + new Vector3(0, .5f), rayDirection);
                 if (Physics.Raycast(transform.position + new Vector3(0, .5f), rayDirection, out hit) && Vector3.Distance(transform.position, _player.transform.position) < ViewDistance)
                 {
                     if (hit.transform.tag == "Player")
