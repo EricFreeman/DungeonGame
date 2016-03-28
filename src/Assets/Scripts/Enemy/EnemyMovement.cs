@@ -13,7 +13,7 @@ namespace Assets.Scripts.Enemy
         public float MinDistance = .75f;
         public EnemyState State = EnemyState.Patrolling;
 
-        private Vector3 _lastKnownLocation; 
+        private Vector3 _lastKnownLocation;
         private GameObject _player;
 
         private NavMeshAgent _navAgent;
@@ -118,7 +118,7 @@ namespace Assets.Scripts.Enemy
 
                         var tlerp = .1f;
                         var newPos = Vector3.Lerp(_currLink.startPos, _currLink.endPos, tlerp);
-                        newPos.y += 2f*Mathf.Sin(Mathf.PI*tlerp);
+                        newPos.y += 2f * Mathf.Sin(Mathf.PI * tlerp);
                         transform.position = newPos;
 
                         if (_currLink.startPos == _currLink.endPos)
@@ -137,45 +137,8 @@ namespace Assets.Scripts.Enemy
                         GetComponent<NavMeshAgent>().destination = _player.transform.position;
 
                         var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
-                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed*Time.deltaTime);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed * Time.deltaTime);
                     }
-                }
-            }
-        }
-
-        private void JumpBullshit()
-        {
-            if (_navAgent.isOnOffMeshLink)
-            {
-                if (!_traversingLink)
-                {
-                    //This is done only once. The animation's progress will determine link traversal.
-                    //cache current link
-                    _currLink = _navAgent.currentOffMeshLinkData;
-                    //start traversing
-                    _traversingLink = true;
-                }
-
-                //lerp from link start to link end in time to animation
-                var tlerp = .1f;
-                //straight line from startlink to endlink
-                var newPos = Vector3.Lerp(_currLink.startPos, _currLink.endPos, tlerp);
-                //add the 'hop'
-                newPos.y += 2f * Mathf.Sin(Mathf.PI * tlerp);
-                //Update transform position
-                transform.position = newPos;
-
-                // when the animation is stopped, we've reached the other side. Don't use looping animations with this control setup
-                if (_currLink.startPos == _currLink.endPos)
-                {
-                    //make sure the player is right on the end link
-                    transform.position = _currLink.endPos;
-                    //internal logic reset
-                    _traversingLink = false;
-                    //Tell unity we have traversed the link
-                    _navAgent.CompleteOffMeshLink();
-                    //Resume normal navmesh behaviour
-                    _navAgent.Resume();
                 }
             }
         }

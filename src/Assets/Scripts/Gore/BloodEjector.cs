@@ -26,7 +26,9 @@ namespace Assets.Scripts.Gore
             {
                 var blood = Instantiate(BloodDroplet);
                 blood.transform.position = transform.position + new Vector3(0, .2f, 0);
-                blood.GetComponent<Rigidbody>().AddForce(hitContext.Direction * Random.Range(MinForce, MaxForce) * hitContext.Force);
+                var path = hitContext.Direction*Random.Range(MinForce, MaxForce)*hitContext.Force;
+                path.y = Random.Range(0f, 250f);
+                blood.GetComponent<Rigidbody>().AddForce(path);
             }
         }
     }
