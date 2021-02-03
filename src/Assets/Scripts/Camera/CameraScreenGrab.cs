@@ -8,7 +8,7 @@ namespace Assets.Scripts.Camera
         public FilterMode FilterMode = FilterMode.Point;
         public UnityEngine.Camera[] OtherCameras;
 
-        private Material _mat;
+        public Material Material;
         Texture2D _tex;
 
         void Start()
@@ -49,25 +49,12 @@ namespace Assets.Scripts.Camera
 
         void OnPostRender()
         {
-            if (!_mat)
-            {
-                _mat = new Material("Shader \"Hidden/SetAlpha\" {" +
-                                   "SubShader {" +
-                                   "	Pass {" +
-                                   "		ZTest Always Cull Off ZWrite Off" +
-                                   "		ColorMask A" +
-                                   "		Color (1,1,1,1)" +
-                                   "	}" +
-                                   "}" +
-                                   "}"
-                    );
-            }
             // Draw a quad over the whole screen with the above shader
             GL.PushMatrix();
             GL.LoadOrtho();
-            for (var i = 0; i < _mat.passCount; ++i)
+            for (var i = 0; i < Material.passCount; ++i)
             {
-                _mat.SetPass(i);
+                Material.SetPass(i);
                 GL.Begin(GL.QUADS);
                 GL.Vertex3(0, 0, 0.1f);
                 GL.Vertex3(1, 0, 0.1f);

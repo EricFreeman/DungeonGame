@@ -58,7 +58,7 @@ namespace Assets.Scripts.Enemy
             }
 
             Destroy(GetComponent<EnemyMovement>());
-            Destroy(GetComponent<NavMeshAgent>());
+            Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
 
             _isDead = true;
             GetComponent<Animator>().SetBool("IsDead", true);

@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
             var sideMovemnt = Input.GetAxisRaw("Horizontal");
             var tilt = -1 * sideMovemnt * MaxTilt;
 
-            _currentTilt = _currentTilt.MoveTowards(tilt, TiltSpeed);
+            _currentTilt = _currentTilt.MoveTowards(tilt, TiltSpeed * Time.deltaTime);
 
             var rot = transform.localRotation;
             transform.localRotation = Quaternion.AngleAxis(_currentTilt, Vector3.forward);

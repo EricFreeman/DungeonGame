@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
@@ -7,13 +9,21 @@ namespace Assets.Scripts.Weapons
         public float MoveAmount = .5f;
         public float MoveSpeed = 20f;
 
+        private List<float> _runningAvg;
+
         void Update ()
         {
-            var defaultPos = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
-            var moveOnX = -Input.GetAxis("Mouse X") * Time.deltaTime * MoveAmount;
-            var newGunPos = new Vector3(defaultPos.x + moveOnX, defaultPos.y, defaultPos.z);
+            var moveOnX = Input.GetAxis("Mouse X") * MoveAmount;
+            _runningAvg.Add(moveOnX);
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, newGunPos, MoveSpeed * Time.deltaTime);
+            if (_runningAvg.Count > 10)
+            {
+                _runningAvg.RemoveAt(0);
+            }
+
+            var avgPos = new Vector3(_runningAvg.Sum() / _runningAvg.Count, transform.localPosition.y, transform.localPosition.z);
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, avgPos, MoveSpeed * Time.deltaTime);
         }
     }
 }

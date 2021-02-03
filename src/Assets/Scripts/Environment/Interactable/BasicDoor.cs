@@ -28,7 +28,7 @@ namespace Assets.Scripts.Environment.Interactable
         {
             if (_wasUsed)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _endPosition, Speed);
+                transform.position = Vector3.MoveTowards(transform.position, _endPosition, Speed * Time.deltaTime);
             }
         }
 

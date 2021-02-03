@@ -1,29 +1,54 @@
 fileFormatVersion: 2
 guid: 8457358ff5c107a48be214169ffa4661
-timeCreated: 1455851771
-licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: eye-robot-double_0
-    21300002: eye-robot-double_1
-    21300004: eye-robot-double_2
-    21300006: eye-robot-double_3
-    21300008: eye-robot-double_4
-    21300010: eye-robot-double_5
-    21300012: eye-robot-double_6
-    21300014: eye-robot-double_7
-    21300016: eye-robot-double_8
-    21300018: eye-robot-double_9
-    21300020: eye-robot-double_10
-    21300022: eye-robot-double_11
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: eye-robot-double_0
+  - first:
+      213: 21300002
+    second: eye-robot-double_1
+  - first:
+      213: 21300004
+    second: eye-robot-double_2
+  - first:
+      213: 21300006
+    second: eye-robot-double_3
+  - first:
+      213: 21300008
+    second: eye-robot-double_4
+  - first:
+      213: 21300010
+    second: eye-robot-double_5
+  - first:
+      213: 21300012
+    second: eye-robot-double_6
+  - first:
+      213: 21300014
+    second: eye-robot-double_7
+  - first:
+      213: 21300016
+    second: eye-robot-double_8
+  - first:
+      213: 21300018
+    second: eye-robot-double_9
+  - first:
+      213: 21300020
+    second: eye-robot-double_10
+  - first:
+      213: 21300022
+    second: eye-robot-double_11
+  externalObjects: {}
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -32,37 +57,60 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: 0
     aniso: 16
-    mipBias: -1
-    wrapMode: 1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: eye-robot-double_0
+    - serializedVersion: 2
+      name: eye-robot-double_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,16 +120,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -22, y: 28}
-        - {x: -26, y: 25}
-        - {x: -26, y: -14}
-        - {x: -19, y: -32}
-        - {x: 18, y: -32}
-        - {x: 24, y: -22}
-        - {x: 24, y: 27}
-        - {x: 23, y: 28}
-    - name: eye-robot-double_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02305410000000000800000000000000
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_1
       rect:
         serializedVersion: 2
         x: 64
@@ -91,16 +141,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -22, y: 28}
-        - {x: -26, y: 25}
-        - {x: -26, y: -14}
-        - {x: -19, y: -32}
-        - {x: 18, y: -32}
-        - {x: 24, y: -22}
-        - {x: 24, y: 27}
-        - {x: 23, y: 28}
-    - name: eye-robot-double_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22305410000000000800000000000000
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_2
       rect:
         serializedVersion: 2
         x: 128
@@ -110,16 +162,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 22, y: 30}
-        - {x: -21, y: 30}
-        - {x: -24, y: 27}
-        - {x: -24, y: -15}
-        - {x: -15, y: -32}
-        - {x: 18, y: -32}
-        - {x: 24, y: -21}
-        - {x: 24, y: 28}
-    - name: eye-robot-double_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42305410000000000800000000000000
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_3
       rect:
         serializedVersion: 2
         x: 192
@@ -129,14 +183,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 28}
-        - {x: -24, y: -12}
-        - {x: -20, y: -32}
-        - {x: 12, y: -32}
-        - {x: 24, y: -17}
-        - {x: 24, y: 28}
-    - name: eye-robot-double_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62305410000000000800000000000000
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_4
       rect:
         serializedVersion: 2
         x: 0
@@ -146,16 +204,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -22, y: 28}
-        - {x: -26, y: 25}
-        - {x: -26, y: -14}
-        - {x: -19, y: -32}
-        - {x: 18, y: -32}
-        - {x: 24, y: -22}
-        - {x: 24, y: 27}
-        - {x: 23, y: 28}
-    - name: eye-robot-double_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82305410000000000800000000000000
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_5
       rect:
         serializedVersion: 2
         x: 64
@@ -165,15 +225,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -14, y: 30}
-        - {x: -26, y: 27}
-        - {x: -26, y: -32}
-        - {x: 17, y: -32}
-        - {x: 24, y: -6}
-        - {x: 24, y: 23}
-        - {x: 21, y: 30}
-    - name: eye-robot-double_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2305410000000000800000000000000
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_6
       rect:
         serializedVersion: 2
         x: 128
@@ -183,17 +246,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15, y: 28}
-        - {x: -19, y: 28}
-        - {x: -24, y: 20}
-        - {x: -24, y: -10}
-        - {x: -16, y: -32}
-        - {x: 15, y: -32}
-        - {x: 24, y: -1}
-        - {x: 24, y: 26}
-        - {x: 19, y: 27}
-    - name: eye-robot-double_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2305410000000000800000000000000
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_7
       rect:
         serializedVersion: 2
         x: 192
@@ -203,15 +267,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: 29}
-        - {x: -24, y: 26}
-        - {x: -24, y: -21}
-        - {x: -22, y: -32}
-        - {x: 29, y: -32}
-        - {x: 29, y: 27}
-        - {x: 14, y: 29}
-    - name: eye-robot-double_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2305410000000000800000000000000
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_8
       rect:
         serializedVersion: 2
         x: 0
@@ -221,13 +288,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 28}
-        - {x: -24, y: -32}
-        - {x: 14, y: -32}
-        - {x: 24, y: 6}
-        - {x: 24, y: 28}
-    - name: eye-robot-double_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03305410000000000800000000000000
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_9
       rect:
         serializedVersion: 2
         x: 64
@@ -237,18 +309,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -14, y: 28}
-        - {x: -23, y: 20}
-        - {x: -24, y: 17}
-        - {x: -25, y: 11}
-        - {x: -25, y: -17}
-        - {x: -19, y: -32}
-        - {x: 15, y: -32}
-        - {x: 24, y: -15}
-        - {x: 24, y: 24}
-        - {x: 17, y: 28}
-    - name: eye-robot-double_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23305410000000000800000000000000
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_10
       rect:
         serializedVersion: 2
         x: 128
@@ -258,15 +330,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24, y: 28}
-        - {x: -24, y: -30}
-        - {x: -22, y: -32}
-        - {x: 17, y: -32}
-        - {x: 24, y: -13}
-        - {x: 24, y: 23}
-        - {x: 21, y: 28}
-    - name: eye-robot-double_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43305410000000000800000000000000
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye-robot-double_11
       rect:
         serializedVersion: 2
         x: 192
@@ -276,14 +351,29 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -21, y: 28}
-        - {x: -24, y: 21}
-        - {x: -24, y: -32}
-        - {x: 24, y: -32}
-        - {x: 24, y: 28}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63305410000000000800000000000000
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

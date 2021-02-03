@@ -16,14 +16,14 @@ namespace Assets.Scripts.Enemy
         private Vector3 _lastKnownLocation;
         private GameObject _player;
 
-        private NavMeshAgent _navAgent;
+        private UnityEngine.AI.NavMeshAgent _navAgent;
         private bool _traversingLink;
-        private OffMeshLinkData _currLink;
+        private UnityEngine.AI.OffMeshLinkData _currLink;
 
         void Start()
         {
             _player = GameObject.Find("Player");
-            _navAgent = GetComponent<NavMeshAgent>();
+            _navAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
             _navAgent.autoTraverseOffMeshLink = false;
         }
 
@@ -89,7 +89,7 @@ namespace Assets.Scripts.Enemy
             {
                 GetComponent<Animator>().SetBool("IsMoving", true);
 
-                GetComponent<NavMeshAgent>().destination = _lastKnownLocation;
+                GetComponent<UnityEngine.AI.NavMeshAgent>().destination = _lastKnownLocation;
 
                 if (Vector3.Distance(transform.position, _lastKnownLocation) < .1f)
                 {
@@ -104,7 +104,7 @@ namespace Assets.Scripts.Enemy
                     GetComponent<Animator>().SetBool("IsMoving", false);
                     GetComponent<Animator>().SetBool("IsAttacking", true);
                     _lastKnownLocation = _player.transform.position;
-                    GetComponent<NavMeshAgent>().destination = transform.position;
+                    GetComponent<UnityEngine.AI.NavMeshAgent>().destination = transform.position;
                 }
                 else
                 {
@@ -134,7 +134,7 @@ namespace Assets.Scripts.Enemy
                         GetComponent<Animator>().SetBool("IsMoving", true);
 
                         _lastKnownLocation = _player.transform.position;
-                        GetComponent<NavMeshAgent>().destination = _player.transform.position;
+                        GetComponent<UnityEngine.AI.NavMeshAgent>().destination = _player.transform.position;
 
                         var targetRotation = Quaternion.LookRotation(_player.transform.position - transform.position);
                         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, TurnSpeed * Time.deltaTime);
