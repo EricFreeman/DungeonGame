@@ -29,6 +29,8 @@ namespace Assets.Scripts.Enemy
                     IsMelee = true
                 };
                 _player.GetComponent<HealthBehavior>().TakeDamage(hitContext);
+
+                CameraScreenShake.Instance.Shake(.2f, .05f, .05f);
             }
         }
     }

@@ -18,6 +18,11 @@ namespace Assets.Scripts.Weapons
         {
             if ((IsFriendly && col.tag != "Player") || !IsFriendly && col.tag == "Player")
             {
+                if (col.tag == "Player")
+                {
+                    CameraScreenShake.Instance.Shake(.2f, .05f, .05f);
+                }
+
                 Destroy(gameObject);
             }
         }
