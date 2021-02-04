@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Enemy;
 using Assets.Scripts.People;
 using Assets.Scripts.Player;
 using Assets.Scripts.Utils;
